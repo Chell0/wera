@@ -128,13 +128,13 @@ import NavBar from "@/components/NavBar/NavBar";
 import Footer from "@/components/Footer/Footer";
 import Pagination from '@/components/Pagination/Pagination';
 
-type BlogProps = {
-    id: number,
-    title: string,
-    category: string,
-    image: string,
-    tags: string
-}
+// type BlogProps = {
+//     id: number,
+//     title: string,
+//     category: string,
+//     image: string,
+//     tags: string
+// }
 
 
 // const blogs = Array.from({length: 72}, (_, i) => ({
@@ -148,7 +148,7 @@ type BlogProps = {
 
 
 
-export default function BlogPage({ id, title, category, image, tags }: BlogProps) {
+export default function BlogPage() {
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -218,15 +218,14 @@ export default function BlogPage({ id, title, category, image, tags }: BlogProps
                                     <Image src={blog.image} alt={blog.title} width={2000} height={870} className={`object-contain`} />
                                     <div className="p-6">
                                         <h2 className="text-xl font-bold mb-2">
-                                            <Link href={`/blog/${blog.slug}`} className="text-orange-400 font-semibold hover:underline">
+                                            <Link href={`/blog/slug`} className="text-orange-400 font-semibold hover:underline">
                                                 {blog.title}
                                             </Link>
                                         </h2>
                                         <p className="text-gray-400 mb-4">Content for {blog.title}</p>
                                         <div className="flex flex-wrap gap-2">
                                             {blog.tags.map((tag, index) => (
-                                                <span key={index}
-                                                    className="bg-orange-400 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
+                                                <span key={index} className="bg-orange-400 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
                                                     {tag}
                                                 </span>
                                             ))}
@@ -238,8 +237,8 @@ export default function BlogPage({ id, title, category, image, tags }: BlogProps
                     </div>
                     <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
                     <Footer />
-                </main>
-            </div>
+                </main >
+            </div >
         </>
     );
 };
