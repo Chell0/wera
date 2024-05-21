@@ -39,43 +39,45 @@ const venues: Venue[] = [
 
 export default function Databank() {
     return (
-        <div className="container mx-auto p-6">
-            <div className='bg-white p-1 px-4 rounded-lg shadow-md'>
-                <h1 className="text-orange-400 text-2xl font-bold mb-4 mt-5">Raumdatenbank</h1>
-                <p className="text-gray-400 mb-6">
-                    Auf dieser Seite bieten wir euch eine Übersicht zu Räumen für Veranstaltungen und für die Vereinsarbeit.
-                    Nachstehend findet ihr Büro- und Veranstaltungsräume in Hamburg, für die teils Mietkosten anfallen, die teils aber auch kostenlos angeboten werden.
-                    Bitte wendet Euch für weitere Informationen direkt an die angegebenen Ansprechpartner*innen.
-                </p>
-            </div>
-            <div className="overflow-x-auto shadow-xl rounded-lg mt-20">
-                <table className="min-w-full divide-y divide-gray-200 bg-white">
-                    <thead className="bg-gray-50">
-                        <tr>
-                            <th scope="col" className="bg-orange-400 px-6 py-3 text-left text-sm font-medium text-white uppercase tracking-wider">Ort</th>
-                            <th scope="col" className="bg-orange-400 px-6 py-3 text-left text-sm font-medium text-white uppercase tracking-wider border-l border-gray-200">Beschreibung</th>
-                            <th scope="col" className="bg-orange-400 px-6 py-3 text-left text-sm font-medium text-white uppercase tracking-wider border-l border-gray-200">Personen Kapazität</th>
-                            <th scope="col" className="bg-orange-400 px-6 py-3 text-left text-sm font-medium text-white uppercase tracking-wider border-l border-gray-200">Kosten</th>
-                            <th scope="col" className="bg-orange-400 px-6 py-3 text-left text-sm font-medium text-white uppercase tracking-wider border-l border-gray-200">Kontakt</th>
-                            <th scope="col" className="bg-orange-400 px-6 py-3 text-left text-sm font-medium text-white uppercase tracking-wider border-l border-gray-200">Link</th>
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-200">
-                        {venues.map((venue, index) => (
-                            <tr key={index}>
-                                <td className="px-6 py-4 whitespace-nowrap text-xs font-medium text-gray-900">{venue.ort}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-xs text-gray-500 border-l border-gray-200">{venue.beschreibung}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-xs text-gray-500 border-l border-gray-200">{venue.personenKapazitat}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-xs text-gray-500 border-l border-gray-200">{venue.kosten}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-xs text-gray-500 border-l border-gray-200">{venue.kontakt}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-xs text-blue-600 border-l border-gray-200">
-                                    <Link href={venue.link} className="no-underline bg-blue-600 text-white p-2 rounded-md hover:text-blue-900" style={{ textDecorationLine: "!none" }}>Zur Website</Link>
-                                </td>
+        <>
+            <div className="container mx-auto mt-28">
+                <div className='bg-white p-1 px-4 rounded-lg shadow-md'>
+                    <h1 className="text-orange-400 text-2xl font-bold mb-4 mt-5">Raumdatenbank</h1>
+                    <p className="text-gray-400 mb-6">
+                        Auf dieser Seite bieten wir euch eine Übersicht zu Räumen für Veranstaltungen und für die Vereinsarbeit.
+                        Nachstehend findet ihr Büro- und Veranstaltungsräume in Hamburg, für die teils Mietkosten anfallen, die teils aber auch kostenlos angeboten werden.
+                        Bitte wendet Euch für weitere Informationen direkt an die angegebenen Ansprechpartner*innen.
+                    </p>
+                </div>
+                <div className="overflow-x-auto shadow-xl rounded-lg mt-20">
+                    <table className="min-w-full divide-y divide-gray-200 bg-white">
+                        <thead className="bg-gray-50">
+                            <tr>
+                                <th scope="col" className="bg-orange-400 px-6 py-3 text-left text-sm font-medium text-white uppercase tracking-wider">Ort</th>
+                                <th scope="col" className="bg-orange-400 px-6 py-3 text-left text-sm font-medium text-white uppercase tracking-wider border-l border-gray-200">Beschreibung</th>
+                                <th scope="col" className="bg-orange-400 px-6 py-3 text-left text-sm font-medium text-white uppercase tracking-wider border-l border-gray-200">Personen Kapazität</th>
+                                <th scope="col" className="bg-orange-400 px-6 py-3 text-left text-sm font-medium text-white uppercase tracking-wider border-l border-gray-200">Kosten</th>
+                                <th scope="col" className="bg-orange-400 px-6 py-3 text-left text-sm font-medium text-white uppercase tracking-wider border-l border-gray-200">Kontakt</th>
+                                <th scope="col" className="bg-orange-400 px-6 py-3 text-left text-sm font-medium text-white uppercase tracking-wider border-l border-gray-200">Link</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody className="divide-y divide-gray-200">
+                            {venues.map((venue, index) => (
+                                <tr key={index}>
+                                    <td className="px-6 py-4 whitespace-nowrap text-xs font-medium text-gray-900">{venue.ort}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-xs text-gray-500 border-l border-gray-200">{venue.beschreibung}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-xs text-gray-500 border-l border-gray-200">{venue.personenKapazitat}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-xs text-gray-500 border-l border-gray-200">{venue.kosten}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-xs text-gray-500 border-l border-gray-200">{venue.kontakt}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-xs text-blue-600 border-l border-gray-200">
+                                        <Link href={venue.link} className="no-underline bg-blue-600 text-white p-2 rounded-md hover:text-blue-900" style={{ textDecorationLine: "!none" }}>Zur Website</Link>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
+        </>
     );
 };

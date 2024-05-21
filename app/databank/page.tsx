@@ -5,7 +5,7 @@ import NavBar from "@/components/NavBar/NavBar";
 export default function Page() {
     return (
         <>
-            <div className="relative bg-fixed bg-cover bg-center min-h-screen" style={{ backgroundImage: `url("/homepage-bg.jpeg")` }}>
+            <div className={`relative bg-cover bg-no-repeat bg-local`} style={{ backgroundImage: `url("/databank-bg.jpeg")` }}>
                 <main className="p-6">
                     <NavBar />
                     <Databank />

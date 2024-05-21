@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
-import { Open_Sans } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import "../styles/globals.css";
 
-const open = Open_Sans({ subsets: ["latin"] });
+const jet = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "700"]
+});
 
 export const metadata: Metadata = {
   title: "Ossara Blog",
@@ -16,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={open.className}>{children}</body>
+      <body className={jet.className}>{children}</body>
     </html>
   );
 }

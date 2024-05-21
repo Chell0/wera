@@ -206,7 +206,7 @@ export default function BlogPage() {
 
     return (
         <>
-            <div className="relative bg-fixed bg-cover bg-center min-h-screen"
+            <div className={`relative bg-cover bg-no-repeat bg-local`}
                 style={{ backgroundImage: `url("/homepage-bg.jpeg")` }}>
                 <main className={`p-6`}>
                     <NavBar />

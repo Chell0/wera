@@ -1,13 +1,14 @@
 import Footer from "@/components/Footer/Footer";
+import Kalendar from "@/components/Kalendar/Kalendar";
 import NavBar from "@/components/NavBar/NavBar";
 
 export default function Page() {
     return (
         <>
-            <div className="relative bg-fixed bg-cover bg-center" style={{ backgroundImage: `url("/kalendar-bg.jpeg")` }}>
-                <main className="p-6">
+            <div className={`relative bg-cover bg-no-repeat bg-local`} style={{ backgroundImage: `url("/kalendar-bg.jpeg")` }}>
+                <main className={`p-6`}>
                     <NavBar />
-                    <h1>Welcome to the Kalendar Page Coming Soon ...</h1>
+                    <Kalendar />
                     <Footer />
                 </main>
             </div>

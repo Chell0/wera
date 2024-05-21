@@ -10,9 +10,9 @@ import ShowMoreButton from "@/components/ShowMoreButton/ShowMoreButton";
 export default function Home() {
     return (
         <>
-            <div className="relative bg-fixed bg-cover bg-center min-h-screen"
+            <div className="relative bg-cover bg-no-repeat bg-local"
                 style={{ backgroundImage: `url("/homepage-bg.jpeg")` }}>
-                <main className="p-6">
+                <main className={`p-6`}>
                     <NavBar />
                     <div className="flex items-center justify-center p-4 mt-10">
                         <Banner />
@@ -21,8 +21,8 @@ export default function Home() {
                         <About />
                     </div>
                     <div className="w-full flex items-center justify-center py-4 mt-20 px-2 sm:px-2">
-                        <div className="bg-white shadow-lg rounded-lg w-full max-w-sm py-4 px-2 sm:px-4">
-                            <h2 className="text-xl sm:text-lg md:text-xl lg:text-2xl font-bold text-center">
+                        <div className="bg-white shadow-lg rounded-lg max-w-md py-4 px-2 sm:px-4">
+                            <h2 className="text-xl sm:text-md md:text-xl lg:text-2xl font-bold text-center">
                                 Discover Our Latest Blogs
                             </h2>
                         </div>
