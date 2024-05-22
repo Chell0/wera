@@ -26,7 +26,7 @@ export default function NavBar() {
         <nav className="p-6 md:bg-transparent">
             <div className={`flex justify-between items-center ${isOpen ? 'bg-orange-400 p-4' : ''}`}>
                 <div className={`text-3xl font-bold ${isOpen ? 'text-white' : 'text-orange-500'}`}>
-                    <Link href="/">Titel</Link>
+                    <Link href="/">MachtBewusst-Hamburg</Link>
                 </div>
                 <div className="hidden md:flex bg-orange-400 rounded-lg px-4 py-2 space-x-4 text-white">
                     <Link href="/" className="hover:text-gray-500">Home</Link>
@@ -36,7 +36,9 @@ export default function NavBar() {
                     <Link href="/kalendar" className=" hover:text-gray-500">Kalendar</Link>
                 </div>
                 <div className="hidden md:block">
-                    <Image src="/ossara-logo.png" alt="Ossara Logo" width={150} height={100} className="object-contain" />
+                    <Link href={`https://www.ossara.de`}>
+                        <Image src="/ossara-logo.png" alt="Ossara Logo" width={200} height={200} className="object-contain" />
+                    </Link>
                 </div>
                 <div className="md:hidden">
                     <button onClick={toggleMenu} className={`${isOpen ? 'text-white' : 'text-orange-600'}`}>
