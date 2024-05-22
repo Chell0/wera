@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono } from "next/font/google";
+import { Open_Sans } from "next/font/google";
 import "../styles/globals.css";
 
-const jet = JetBrains_Mono({
+const open = Open_Sans({
   subsets: ["latin"],
   weight: ["400", "700"]
 });
@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={jet.className}>{children}</body>
+      <body className={open.className}>{children}</body>
     </html>
   );
 }
