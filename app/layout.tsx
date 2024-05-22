@@ -8,7 +8,7 @@ const jose = Josefin_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Ossara Blog",
+  title: "MachtBewusst-Hamburg",
   description: "Build by Kazifiti",
 };
 
