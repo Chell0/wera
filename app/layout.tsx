@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Open_Sans } from "next/font/google";
+import { Josefin_Sans } from "next/font/google";
 import "../styles/globals.css";
 
-const open = Open_Sans({
+const jose = Josefin_Sans({
   subsets: ["latin"],
   weight: ["400", "700"]
 });
@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={open.className}>{children}</body>
+      <body className={jose.className}>{children}</body>
     </html>
   );
 }
