@@ -20,7 +20,7 @@ export default function Home() {
                     <div className="flex items-center justify-center p-4 mt-20">
                         <About />
                     </div>
-                    <div className="w-full flex items-center justify-center py-4 mt-20 px-2 sm:px-2">
+                    <div className="w-full flex items-center justify-center py-4 mt-10 px-2 sm:px-2">
                         <div className="bg-white shadow-lg rounded-lg max-w-md py-4 px-2 sm:px-4">
                             <h2 className="text-orange-400 text-xl sm:text-md md:text-xl lg:text-2xl font-bold text-center">
                                 Discover Our Latest Blogs
