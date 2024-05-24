@@ -5,7 +5,7 @@ export default function Banner() {
         <>
             <div className="relative w-full sm:w-[1061.95px] h-60 mt-20 sm:h-96 md:h-[462px] mx-auto">
                 <Image
-                    src="/banner.png"
+                    src="/Banner.png"
                     alt="Banner"
                     layout="fill"
                     objectFit="cover"

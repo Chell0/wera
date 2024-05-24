@@ -8,7 +8,7 @@ const jose = Josefin_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "MachtBewusst-Hamburg",
+  title: "-",
   description: "Build by Kazifiti",
 };
 
