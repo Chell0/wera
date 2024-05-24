@@ -5,11 +5,11 @@ export default function Banner() {
         <>
             <div className="relative w-full sm:w-[1061.95px] h-60 mt-20 sm:h-96 md:h-[462px] mx-auto">
                 <Image
-                    src="/Banner.jpg"
+                    src="/Banner.jpeg"
                     alt="Banner"
                     layout="fill"
                     objectFit="cover"
-                    className="rounded-lg"
+                    className="rounded-md shadow-xl"
                 />
                 {/* <div className="absolute inset-0 bg-black bg-opacity-50 rounded-lg flex flex-col justify-center items-center text-white p-4"> */}
                 {/* <h1 className="text-xl sm:text-3xl font-bold mb-2 text-center">Welcome to Ossara Blog</h1> */}
