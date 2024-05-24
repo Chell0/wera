@@ -9,7 +9,7 @@ export default function Banner() {
                     alt="Banner"
                     layout="fill"
                     objectFit="cover"
-                    className="shadow-xl"
+                    className="rounded-xl shadow-xl"
                 />
                 {/* <div className="absolute inset-0 bg-black bg-opacity-50 rounded-lg flex flex-col justify-center items-center text-white p-4"> */}
                 {/* <h1 className="text-xl sm:text-3xl font-bold mb-2 text-center">Welcome to Ossara Blog</h1> */}
