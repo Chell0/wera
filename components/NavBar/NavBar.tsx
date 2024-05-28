@@ -38,9 +38,9 @@ export default function NavBar() {
                 <div className="md:hidden bg-orange-500 p-4 space-y-2">
                     <Link href="/" className="block no-underline text-white hover:text-gray-300">Home</Link>
                     <Link href="/material" className="block no-underline text-white hover:text-gray-300">Material</Link>
-                    <Link href="/blog" className="block no-underline text-white hover:text-gray-300">Blog</Link>
-                    <Link href="/databank" className="block no-underline text-white hover:text-gray-300">Databank</Link>
-                    <Link href="/kalendar" className="block no-underline text-white hover:text-gray-300">Kalendar</Link>
+                    <Link href="/themen" className="block no-underline text-white hover:text-gray-300">Themen</Link>
+                    <Link href="/datenbank" className="block no-underline text-white hover:text-gray-300">Datenbank</Link>
+                    <Link href="/kalender" className="block no-underline text-white hover:text-gray-300">Kalender</Link>
                 </div>
             )}
         </nav>
