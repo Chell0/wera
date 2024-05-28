@@ -37,19 +37,18 @@ const venues: Venue[] = [
     { ort: 'Junges Hotel Hamburg', beschreibung: 'Tagungsräume', personenKapazitat: 1200, kosten: '450', kontakt: 'Tel.: 040 428 37 133', link: '#' },
 ];
 
-export default function Databank() {
+export default function Datenbank() {
     return (
         <>
             <div className="container mx-auto mt-28">
-                <div className='bg-white p-1 px-4 rounded-lg shadow-md'>
-                    <h1 className="text-orange-400 text-2xl font-bold mb-4 mt-5">Raumdatenbank</h1>
-                    <p className="text-gray-400 mb-6">
-                        Auf dieser Seite bieten wir euch eine Übersicht zu Räumen für Veranstaltungen und für die Vereinsarbeit.
-                        Nachstehend findet ihr Büro- und Veranstaltungsräume in Hamburg, für die teils Mietkosten anfallen, die teils aber auch kostenlos angeboten werden.
-                        Bitte wendet Euch für weitere Informationen direkt an die angegebenen Ansprechpartner*innen.
+                <div className='bg-white p-5 m-10 rounded-xl shadow-lg'>
+                    <h1 className="text-orange-400 text-2xl font-semibold p-3">Datenbank</h1>
+                    <p className="text-gray-400 p-3">
+                        Hier habt ihr die Möglichkeit, in unserer umfassenden Datenbank nach Akteur:innen und Institutionen zu suchen, die sich aktiv mit den Themen um (Post-) Kolonialismus und Dekolonisierung auseinandersetzen. Zudem könnt ihr hier Speaker:innen und Bildungsreferent:innen aus Hamburg finden, die sich mit großer Expertise und Leidenschaft mit diesen wichtigen Themen beschäftigen. Diese Datenbank wird regelmäßig aktualisiert, um euch stets aktuelle Informationen zu liefern.<br />
+                        Wenn auch ihr als Institution oder Einzelperson in dieser Datenbank genannt werden möchtet, könnt ihr das entsprechende Formular ausfüllen. Ossara e.V. übernimmt keine Verantwortung für den vermittelten Inhalt der Speaker:innen, noch stellen die Menschen in irgendeiner Weise die offizielle Position von Ossara e.V. dar.
                     </p>
                 </div>
-                <div className="overflow-x-auto shadow-xl rounded-lg mt-20">
+                <div className="overflow-x-auto shadow-xl rounded-xl mt-20">
                     <table className="min-w-full divide-y divide-gray-200 bg-white">
                         <thead className="bg-gray-50">
                             <tr>

@@ -9,10 +9,8 @@ export default function Page() {
                 <main className="p-6">
                     <NavBar />
                     <div className="bg-white p-8 rounded-lg shadow-xl mt-28 mx-auto w-full sm:w-[1016.95px]">
-                        <h1 className="text-orange-400 text-2xl font-semibold mb-4 text-left">Material</h1>
                         <p className="mb-4 text-gray-400 text-left">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            Auf der Seite Material bekommt ihr eine Vielzahl von Materialsammlungen rund um das Thema (Post-) Kolonialismus und Dekolonisierung. In den Rubriken Bildungsmaterial, Videos, Literatur und Podcasts haben wir für euch zahlreiche verlinkte Ressourcen zusammengestellt, um euch bei der weiteren Auseinandersetzung mit dem Thema zu unterstützen. Die Auswahl an Materialien wird stetig erweitert, sodass ihr regelmäßig neue Entdeckungen machen könnt. Wenn ihr eigene Empfehlungen habt, zögert nicht, sie mit uns zu teilen - wir nehmen gerne empfohlene oder von euch erstellte Materialien in unsere Sammlung auf.
                         </p>
                     </div>
                     <Material />
