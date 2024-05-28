@@ -79,7 +79,7 @@ export default function BlogPage() {
                                                 {blog.title}
                                             </Link>
                                         </h2>
-                                        <p className="text-gray-400 mb-4">Content for {blog.title}</p>
+                                        <p className="text-gray-600 mb-4">Content for {blog.title}</p>
                                         <div className="flex flex-wrap gap-2">
                                             {blog.tags.map((tag, index) => (
                                                 <span key={index} className="bg-orange-400 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">

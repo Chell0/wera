@@ -9,7 +9,7 @@ export default function Page() {
                 <main className={`p-6`}>
                     <NavBar />
                     <div className='bg-white p-5 m-5 rounded-lg shadow-md'>
-                        <p className="text-gray-400">
+                        <p className="text-gray-600">
                             An dieser Stelle könnt ihr eine Vielzahl an aktuellen Veranstaltungsterminen entdecken, die sich intensiv mit den Themen um (Post-) Kolonialismus und Dekolonisierung befassen.
                         </p>
                     </div>

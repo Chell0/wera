@@ -9,7 +9,7 @@ export default function Footer() {
             <footer className="p-6 mt-20 border-t-2 border-orange-600 my-4">
                 <div
                     className="container mx-auto flex flex-col items-center md:flex-row md:justify-between text-center md:text-left">
-                    <p className="text-sm text-orange-600">©{currentYear} Ossara.</p>
+                    <p className="text-sm text-orange-600">©{currentYear} Ossara</p>
                     <div
                         className="mt-4 md:mt-0 flex flex-col md:flex-row md:items-center space-y-2 md:space-y-0 md:space-x-4">
                         <Link href="/datenschutz" className="no-underline text-orange-600 hover:text-gray-600">Datenschutz</Link>

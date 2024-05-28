@@ -1,14 +1,11 @@
 import type { Metadata } from "next";
-import { Josefin_Sans } from "next/font/google";
+import { Open_Sans } from "next/font/google";
 import "../styles/globals.css";
 
-const jose = Josefin_Sans({
-  subsets: ["latin"],
-  weight: ["400", "700"]
-});
+const open = Open_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "-",
+  title: "MachtBewusst",
   description: "Build by Kazifiti",
 };
 
@@ -19,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={jose.className}>{children}</body>
+      <body className={open.className}>{children}</body>
     </html>
   );
 }
