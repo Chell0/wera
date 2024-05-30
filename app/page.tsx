@@ -5,6 +5,7 @@ import NavBar from "@/components/NavBar/NavBar";
 import BlogCard from "@/components/BlogCard/BlogCard";
 import React from "react";
 import ShowMoreButton from "@/components/ShowMoreButton/ShowMoreButton";
+import NewsLetter from "@/components/NewsLetter/NewsLetter";
 
 
 export default function Home() {
@@ -44,6 +45,9 @@ export default function Home() {
                     </div>
                     <div className={`flex flex-row justify-center mt-20`}>
                         <ShowMoreButton href={"/material"} label={"Mehr"} />
+                    </div>
+                    <div className={` flex flex-row justify-center mt-20`}>
+                        <NewsLetter />
                     </div>
                     <Footer />
                 </main>
