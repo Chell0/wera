@@ -14,9 +14,9 @@ export default function Footer() {
                         className="mt-4 md:mt-0 flex flex-col md:flex-row md:items-center space-y-2 md:space-y-0 md:space-x-4">
                         <Link href="/datenschutz" className="no-underline text-orange-600 hover:text-gray-600">Datenschutz</Link>
                         <Link href="/impressum" className="no-underline text-orange-600 hover:text-gray-600">Impressum</Link>
-                        <Link href="https://www.instagram.com/ossaraev/" className="no-underline text-orange-600 hover:text-gray-600">Instagram</Link>
-                        <Link href="https://www.facebook.com/ossara.de/?ref=page_internal" className="no-underline text-orange-600 hover:text-gray-600">Facebook</Link>
-                        <Link href="https://www.youtube.com/channel/UCe7W9SFkK9y9AyAfknQYvIw" className="no-underline text-orange-600 hover:text-gray-600">YouTube</Link>
+                        <Link href="https://www.instagram.com/ossaraev/" target="_blank" rel="noopener noreferrer" className="no-underline text-orange-600 hover:text-gray-600">Instagram</Link>
+                        <Link href="https://www.facebook.com/ossara.de/?ref=page_internal" target="_blank" rel="noopener noreferrer" className="no-underline text-orange-600 hover:text-gray-600">Facebook</Link>
+                        <Link href="https://www.youtube.com/channel/UCe7W9SFkK9y9AyAfknQYvIw" target="_blank" rel="noopener noreferrer" className="no-underline text-orange-600 hover:text-gray-600">YouTube</Link>
                     </div>
                 </div>
             </footer>
