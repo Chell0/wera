@@ -7,7 +7,7 @@ import NavBar from "@/components/NavBar/NavBar";
 export default function Page() {
     return (
         <>
-            <div className="relative bg-cover bg-no-repeat max-h-full max-w-[1440px]" style={{ backgroundImage: `url("/materialpage-bg.jpeg")` }}>
+            <div className="relative bg-cover bg-no-repeat max-h-full max-w-[1440px]" style={{ backgroundImage: `url("/materialpage-bg.png")` }}>
                 <main className="p-6">
                     <NavBar />
                     <div className="bg-white p-8 rounded-lg shadow-xl mt-28 mx-auto w-full sm:w-[1016.95px]">

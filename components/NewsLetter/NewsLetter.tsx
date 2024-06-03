@@ -3,13 +3,13 @@ import Link from "next/link";
 export default function NewsLetter() {
     return (
         <>
-            <div className={`p-6 grid grid-rows-2 items-center justify-center max-w-lg bg-white shadow-xl rounded-2xl sm:px-4 mt-20`}>
-                <div className={`p-2 mt-2`}>
-                    <p className={`text-gray-600 text-3xl md:text-2xl sm:text-sm font-bold`}>Subscribe to Our Newsletter</p>
+            <div className={`grid grid-rows-2 items-center justify-center max-w-md p-4 bg-white shadow-xl rounded-2xl sm:px-4 mt-20`}>
+                <div className={`mt-2`}>
+                    <p className={`text-orange-600 text-xl lg:text-2xl md:text-md sm:text-sm font-bold`}>Anmeldung zum Newsletter</p>
                 </div>
-                <div className={`flex flex-row justify-center items-center`}>
-                    <Link href={`/`} className={`bg-orange-500 hover:bg-orange-200 hover:text-orange-400 font-semibold text-white text-lg no-underline py-2 px-6 rounded-xl`}>
-                        Sign Up
+                <div className={`flex flex-row justify-center items-center mt-5`}>
+                    <Link href={`https://39dff525.sibforms.com/serve/MUIFAOZ7L48ggutm_jNF7tYry6C5ZYqVW8siJVL8b884tlY5b1VNz1FhlCnABBVeJNpk5uoeBUwZCxreapwZngQmf7hmmmkeduQwCzNri_t920cVKW9kkgE_S-4s5FxL1vrftWnBNIJFz78O5c5zMtTeZy62Qb3b8Sdq1pZbEVAnVFz9EZXogILY5tfmN-Gk8QEG6IyJldrXKxRr`} target="_blank" rel="noopener noreferrer" className={`bg-blue-500 hover:bg-orange-500 hover:text-white font-md text-white text-md no-underline py-2 px-4 rounded-xl`}>
+                        Anmelden
                     </Link>
                 </div>
             </div>

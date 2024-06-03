@@ -64,25 +64,25 @@ export default function BlogPage() {
     return (
         <>
             <div className={`relative bg-cover bg-no-repeat bg-local`}
-                style={{ backgroundImage: `url("/homepage-bg.jpeg")` }}>
+                style={{ backgroundImage: `url("/themen-bg.png")` }}>
                 <main className={`p-6`}>
                     <NavBar />
                     <div className="container mx-auto p-4">
                         <Category onCategorySelect={handleCategorySelect} />
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
                             {filteredBlogs.map(blog => (
                                 <div key={blog.id} className="bg-white rounded-lg shadow-md overflow-hidden">
                                     <Image src={blog.image} alt={blog.title} width={2000} height={870} className={`object-contain`} />
-                                    <div className="p-6">
-                                        <h2 className="text-xl font-bold mb-2">
-                                            <Link href={`/blog/slug`} className="text-orange-400 font-semibold hover:underline">
+                                    <div className="p-3">
+                                        <h2 className="text-lg font-semibold mb-2">
+                                            <Link href={`/blog/slug`} className="text-orange-500 font-semibold hover:underline">
                                                 {blog.title}
                                             </Link>
                                         </h2>
-                                        <p className="text-gray-600 mb-4">Content for {blog.title}</p>
+                                        <p className="text-gray-600 text-sm mb-4 line-clamp-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                                         <div className="flex flex-wrap gap-2">
                                             {blog.tags.map((tag, index) => (
-                                                <span key={index} className="bg-orange-400 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
+                                                <span key={index} className="bg-gray-100 text-orange-500 text-xs font-semibold mr-2 px-2.5 py-1 rounded">
                                                     {tag}
                                                 </span>
                                             ))}

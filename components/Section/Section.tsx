@@ -81,8 +81,8 @@ export default function Material() {
                 <div className="mt-5">
                     <Slider {...settings}>
                         {materials.map((material) => (
-                            <div key={material.title} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 px-4">
-                                <BlogCard imageUrl={"/banner.png"} title={"Discover Our Latest Blogs"}
+                            <div key={material.title} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
+                                <BlogCard imageUrl={"/banner.png"} title={"More of materials"}
                                     description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."} />
                             </div>
                         ))}

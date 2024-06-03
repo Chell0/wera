@@ -13,11 +13,10 @@ export default function NavBar() {
     return (
         <nav className="md:bg-transparent">
             <div className={`flex justify-between items-center ${isOpen ? 'bg-orange-500 p-4' : ''}`}>
-                <div className={`${isOpen ? 'text-white' : 'text-orange-500'}`}>
-                    <Link href="/" className="uppercase text-2xl sm:text-md md:text-lg lg:text-xl xl:text-4xl font-extrabold drop-shadow-lg">MachtBewusst<br />Hamburg</Link>
+                <div className={`${isOpen ? 'text-white' : 'text-orange-600'}`}>
+                    <Link href="/" className="uppercase text-2xl sm:text-md md:text-lg lg:text-xl xl:text-4xl font-extrabold drop-shadow-xl">MachtBewusst<br />Hamburg</Link>
                 </div>
                 <div className="hidden text-sm md:flex bg-orange-500 rounded-lg px-3 py-2 space-x-4 text-white">
-                    <Link href="/" className="hover:text-gray-500">Home</Link>
                     <Link href="/material" className=" hover:text-gray-500">Material</Link>
                     <Link href="/themen" className=" hover:text-gray-500">Themen</Link>
                     <Link href="/datenbank" className=" hover:text-gray-500">Datenbank</Link>
@@ -36,7 +35,6 @@ export default function NavBar() {
             </div>
             {isOpen && (
                 <div className="md:hidden bg-orange-500 p-4 space-y-2">
-                    <Link href="/" className="block no-underline text-white hover:text-gray-300">Home</Link>
                     <Link href="/material" className="block no-underline text-white hover:text-gray-300">Material</Link>
                     <Link href="/themen" className="block no-underline text-white hover:text-gray-300">Themen</Link>
                     <Link href="/datenbank" className="block no-underline text-white hover:text-gray-300">Datenbank</Link>
