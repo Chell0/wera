@@ -74,7 +74,7 @@ export default function BlogPage() {
                                 <div key={blog.id} className="bg-white rounded-lg shadow-md overflow-hidden">
                                     <Image src={blog.image} alt={blog.title} width={2000} height={870} className={`object-contain`} />
                                     <div className="p-3">
-                                        <h2 className="text-lg font-semibold mb-2">
+                                        <h2 className="text-md font-semibold mb-2">
                                             <Link href={`/blog/slug`} className="text-orange-500 font-semibold hover:underline">
                                                 {blog.title}
                                             </Link>

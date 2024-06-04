@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function NewsLetter() {
     return (
         <>
-            <div className={`grid grid-rows-2 items-center justify-center max-w-md p-4 bg-white shadow-xl rounded-2xl sm:px-4 mt-20`}>
+            <div className={`grid grid-rows-2 items-center justify-center max-w-lg p-4 bg-white shadow-xl rounded-2xl sm:px-4 mt-20`}>
                 <div className={`mt-2`}>
                     <p className={`text-orange-600 text-xl lg:text-2xl md:text-md sm:text-sm font-bold`}>Anmeldung zum Newsletter</p>
                 </div>
