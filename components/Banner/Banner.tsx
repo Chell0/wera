@@ -6,7 +6,7 @@ export default function Banner() {
 
             <div className="relative w-full pb-[43.5%] overflow-hidden rounded-lg shadow-xl">
                 <Image
-                    src="/Banner.jpeg"
+                    src="/Machtbewusst.png"
                     alt="Banner Image"
                     layout="fill"
                     className="object-cover rounded-lg"
