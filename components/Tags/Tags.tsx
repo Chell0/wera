@@ -6,10 +6,14 @@ const tags = [
     'verwaltung',
     'bildung',
     'veranstaltung',
-    'tag 5',
-    'tag 6',
-    'tag 7',
-    'tag 8'
+    'kirche',
+    'kunst und kultur',
+    'literatur',
+    'politik',
+    'wissenschaft',
+    'klima',
+    'medizin',
+    'koloniale kontinuität'
 ];
 
 interface TagsProps {
