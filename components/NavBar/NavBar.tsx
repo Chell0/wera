@@ -17,8 +17,8 @@ export default function NavBar() {
                     <Link href="/" className="uppercase text-2xl sm:text-md md:text-lg lg:text-xl xl:text-4xl font-extrabold drop-shadow-xl">MachtBewusst<br />Hamburg</Link>
                 </div>
                 <div className="hidden text-sm md:flex bg-orange-500 rounded-lg px-3 py-2 space-x-4 text-white">
-                    <Link href="#" className=" hover:text-gray-500">Material</Link>
                     <Link href="/themen" className=" hover:text-gray-500">Themen</Link>
+                    <Link href="/material" className=" hover:text-gray-500">Material</Link>
                     <Link href="/datenbank" className=" hover:text-gray-500">Datenbank</Link>
                     <Link href="/kalender" className=" hover:text-gray-500">Kalender</Link>
                 </div>
@@ -35,8 +35,8 @@ export default function NavBar() {
             </div>
             {isOpen && (
                 <div className="md:hidden bg-orange-500 p-4 space-y-2">
-                    <Link href="/material" className="block no-underline text-white hover:text-gray-300">Material</Link>
                     <Link href="/themen" className="block no-underline text-white hover:text-gray-300">Themen</Link>
+                    <Link href="/material" className="block no-underline text-white hover:text-gray-300">Material</Link>
                     <Link href="/datenbank" className="block no-underline text-white hover:text-gray-300">Datenbank</Link>
                     <Link href="/kalender" className="block no-underline text-white hover:text-gray-300">Kalender</Link>
                 </div>
