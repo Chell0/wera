@@ -1,15 +1,51 @@
+"use client"
+
+import { useEffect, useState } from "react";
+import { client, urlFor } from "./lib/sanityClient";
+import { ThemenCard } from "./lib/interface";
+
 import About from "@/components/About/About";
 import Banner from "@/components/Banner/Banner";
 import Footer from "@/components/Footer/Footer";
 import NavBar from "@/components/NavBar/NavBar";
 import BlogCard from "@/components/BlogCard/BlogCard";
-import React from "react";
-import ShowMoreButton from "@/components/ShowMoreButton/ShowMoreButton";
 import NewsLetter from "@/components/NewsLetter/NewsLetter";
+import ShowMoreButton from "@/components/ShowMoreButton/ShowMoreButton";
 
+
+// Fetch Blog Data
+async function fetchBlogsData() {
+    const query = `
+    *[_type == 'blog'] | order(_createdAt desc)[0...6] {
+        title,
+        "currentSlug": slug.current,
+        titleImage,
+        smallDescription,
+        "tags": tags[]->title
+    }`;
+    const data = await client.fetch(query);
+    return data;
+}
 
 
 export default function Home() {
+    const [blogsData, setBlogsData] = useState<ThemenCard[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const blogs = await fetchBlogsData();
+                setBlogsData(blogs);
+            } catch (error) {
+                console.error("error fetching blog data:", error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchData();
+    }, []);
+
     return (
         <>
             <div className="relative bg-cover bg-no-repeat bg-local"
@@ -29,20 +65,18 @@ export default function Home() {
                             </h2>
                         </div>
                     </div>
-                    {/*Blog Cards*/}
+                    {/* Latest Blogs Section*/}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-10 px-10">
-                        {/* <BlogCard image={"/banner.png"} title={"Discover Our Latest Blogs"}
-                            smallDescription={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."} tags={["tag 1", "tag2"]} />
-                        <BlogCard image={"/banner.png"} title={"Discover Our Latest Blogs"}
-                            smallDescription={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."} tags={["tag 1", "tag2"]} />
-                        <BlogCard image={"/banner.png"} title={"Discover Our Latest Blogs"}
-                            smallDescription={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."} tags={["tag 1", "tag2"]} />
-                        <BlogCard image={"/banner.png"} title={"Discover Our Latest Blogs"}
-                            smallDescription={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."} tags={["tag 1", "tag2"]} />
-                        <BlogCard image={"/banner.png"} title={"Discover Our Latest Blogs"}
-                            smallDescription={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."} tags={["tag 1", "tag2"]} />
-                        <BlogCard image={"/banner.png"} title={"Discover Our Latest Blogs"}
-                            smallDescription={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."} tags={["tag 1", "tag2"]} /> */}
+                        {isLoading ? (
+                            <div>Loading...</div>
+                        ) : (
+                            blogsData.map((blog) => (
+                                <BlogCard
+                                    key={blog.currentSlug}
+                                    card={blog}
+                                />
+                            ))
+                        )}
                     </div>
                     <div className={`flex flex-row items-end justify-end md:-mr-32 mt-10`}>
                         <ShowMoreButton href={"/themen"} label={"Mehr"} />

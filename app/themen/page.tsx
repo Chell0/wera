@@ -30,7 +30,7 @@ async function fetchBlogsData() {
     return data;
 }
 
-export const BlogPage = () => {
+export default function BlogPage() {
     const [tagsData, setTagsData] = useState<allTags[]>([]);
     const [blogsData, setBlogsData] = useState<ThemenCard[]>([]);
     const [filteredBlogs, setFilteredBlogs] = useState<ThemenCard[]>([]);
@@ -89,9 +89,11 @@ export const BlogPage = () => {
             <div className={`relative bg-cover bg-no-repeat bg-local`} style={{ backgroundImage: `url("/themen-bg.png")` }}>
                 <main className={`p-6`}>
                     <NavBar />
-                    <Tags onTagSelect={handleTagSelect} tags={tagsData} />
+                    <div className={`mt-20`}>
+                        <Tags onTagSelect={handleTagSelect} tags={tagsData} />
+                    </div>
                     <div className="container mx-auto p-4">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-20">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
                             {currentBlogs.map((card: ThemenCard) => (
                                 <BlogCard key={card.currentSlug} card={card} />
                             ))}
@@ -110,91 +112,3 @@ export const BlogPage = () => {
         </>
     );
 };
-
-export default BlogPage;
-
-
-
-// export default function BlogPage({ titel, titelImage, smallDescription, tags, slug }: BlogProps) {
-//     const [selectedTag, setSelectedTag] = useState(null);
-//     const [currentPage, setCurrentPage] = useState(1);
-//     const [allBlogs, setAllBlogs] = useState([]);
-//     const [tags, setTags] = useState([]);
-
-//     useEffect(() => {
-//         const fetchBlogs = async () => {
-//             const blogs = await client.fetch(`*[_type == "themen"]{
-//                 titel,
-//                 "image": titelImage.asset->url,
-//                 smallDescription,
-//                 "tags": tags[]->titel,
-//                 "slug": slug.current
-//             }`);
-//             setAllBlogs(blogs);
-//         };
-
-//         const fetchTags = async () => {
-//             const tags = await client.fetch(`*[_type == "tag"]{
-//                 title
-//             }`);
-//             setTags(tags.map((tag: { title: any; }) => tag.title));
-//         };
-
-//         fetchBlogs();
-//         fetchTags();
-//     }, []);
-
-//     const handleTagSelect = (tag: string | null) => {
-//         setSelectedTag(tag);
-//         setCurrentPage(1);
-//     }
-
-
-//     const filteredBlogs = selectedTag
-//         ? allBlogs.filter((blog) => blog.tags.includes(selectedTag))
-//         : allBlogs;
-
-//     const ITEMS_PER_PAGE = 12
-//     const totalPages = Math.ceil(filteredBlogs.length / ITEMS_PER_PAGE);
-
-//     const handlePageChange = (page: number) => {
-//         setCurrentPage(page);
-//     };
-
-//     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-//     const currentBlogs = filteredBlogs.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-
-//     return (
-//         <>
-//             <div className={`relative bg-cover bg-no-repeat bg-local`}
-//                 style={{ backgroundImage: `url("/themen-bg.png")` }}>
-//                 <main className={`p-6`}>
-//                     <NavBar />
-//                     <div className="container mx-auto p-4">
-//                         <Tags onTagSelect={handleTagSelect} tags={[]} />
-//                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
-//                             {currentBlogs.map((blog, index) => (
-//                                 <BlogCard
-//                                     key={index}
-//                                     image={blog.titelImage}
-//                                     title={blog.titel}
-//                                     smallDescription={blog.smallDescription}
-//                                     tags={blog.tags}
-//                                     slug={blog.slug}
-//                                 />
-//                             ))}
-//                         </div>
-//                     </div>
-//                     {totalPages > 1 && (
-//                         <Pagination
-//                             currentPage={currentPage}
-//                             totalPages={totalPages}
-//                             onPageChange={handlePageChange}
-//                         />
-//                     )}
-//                     <Footer />
-//                 </main >
-//             </div >
-//         </>
-//     );
-// };

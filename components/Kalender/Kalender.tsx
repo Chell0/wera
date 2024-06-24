@@ -17,7 +17,7 @@ export default function Kalender() {
     useEffect(() => {
         const fetchEvents = async () => {
             const eventsData = await client.fetch(
-                `*[_type == "event"] | order(_createdAt desc) {
+                `*[_type == "event"] | order(_createdAt asc) {
                 date,
                 time,
                 title,

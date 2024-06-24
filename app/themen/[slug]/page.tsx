@@ -22,13 +22,17 @@ async function getData(slug: string) {
 
 export default async function ThemenArticle({ params }: { params: { slug: string } }) {
     const data: ThemenPost = await getData(params.slug);
+
+    // Ensure data.tags is an array
+    const tagsArray = Array.isArray(data.tags) ? data.tags : [];
+
     return (
         <>
             <div className={`relative bg-cover bg-no-repeat bg-local`}
                 style={{ backgroundImage: `url("/themen-bg.png")` }}>
                 <main className={`p-6`}>
                     <NavBar />
-                    <div className={`container mx-auto mt-20 bg-white p-10 rounded-lg shadow-2xl`}>
+                    <div className={`container mx-auto mt-20 bg-white p-10 rounded-lg shadow-2xl max-w-7xl`}>
                         <h1 className="mt-5 mb-10 block text-xl text-center text-orange-500 leading-8 font-bold tracking-wide uppercase">{data.title}</h1>
                         {/* Blog Image */}
                         <div className="flex items-center justify-center mt-10 mb-10">
@@ -43,11 +47,17 @@ export default async function ThemenArticle({ params }: { params: { slug: string
                             />
                         </div>
                         {/* Blog Content */}
-                        <div className="mt-20 prose prose-sm prose-stone prose-headings:text-xl prose-headings:text-orange-500 prose-headings:font-semibold prose-a:text-orange-500 prose-a:target:{`_blank`} prose-a:rel:{`noreferrer`} mx-auto">
+                        <div className="max-w-full mx-auto mt-20 prose prose-sm prose-stone prose-headings:text-xl prose-headings:text-orange-500 prose-headings:font-semibold prose-a:text-orange-500 prose-a:target:_blank prose-a:rel:noreferrer">
                             <PortableText value={data.content} />
                         </div>
                         {/* Tags */}
-                        {/* <p className="mt-4"><strong className="text-orange-500">Tags:</strong>{data.tags}</p> */}
+                        <div className="mt-10 flex flex-wrap justify-center gap-2">
+                            {tagsArray.map((tag, index) => (
+                                <span key={index} className="font-semibold text-xs px-2 py-1 bg-orange-500 text-white rounded-xl shadow-lg">
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
                     </div>
                     <Footer />
                 </main >

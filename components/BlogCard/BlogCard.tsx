@@ -1,7 +1,6 @@
-import { ThemenCard } from "@/app/lib/interface";
 import Image from "next/image";
 import Link from "next/link";
-import ShowMoreButton from "../ShowMoreButton/ShowMoreButton";
+import { ThemenCard } from "@/app/lib/interface";
 import { urlFor } from "@/app/lib/sanityClient";
 
 
