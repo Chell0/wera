@@ -1,5 +1,5 @@
 import Footer from "@/components/Footer/Footer";
-import MaterialCard from "@/components/Material/MaterialCard";
+// import MaterialCard from "@/components/Material/MaterialCard";
 import NavBar from "@/components/NavBar/NavBar";
 
 export default function Page() {
@@ -16,7 +16,7 @@ export default function Page() {
                         </div>
                     </div>
                     {/*Material Cards*/}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 mt-20 px-4">
+                    {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 mt-20 px-4">
                         <MaterialCard imageUrl={"/banner.png"}
                             description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."} />
                         <MaterialCard imageUrl={"/banner.png"}
@@ -65,7 +65,7 @@ export default function Page() {
                             description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."} />
                         <MaterialCard imageUrl={"/banner.png"}
                             description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."} />
-                    </div>
+                    </div> */}
                     <Footer />
                 </main>
             </div>
