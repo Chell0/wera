@@ -17,7 +17,7 @@ export default function NavBar() {
                     <Link href="/" className="uppercase text-2xl sm:text-md md:text-lg lg:text-xl xl:text-4xl font-extrabold drop-shadow-xl">MachtBewusst<br />Hamburg</Link>
                 </div>
                 <div className="hidden text-sm md:flex bg-orange-500 rounded-lg px-3 py-2 space-x-4 text-white">
-                    <Link href="/material" className=" hover:text-gray-500">Material</Link>
+                    <Link href="#" className=" hover:text-gray-500">Material</Link>
                     <Link href="/themen" className=" hover:text-gray-500">Themen</Link>
                     <Link href="/datenbank" className=" hover:text-gray-500">Datenbank</Link>
                     <Link href="/kalender" className=" hover:text-gray-500">Kalender</Link>
