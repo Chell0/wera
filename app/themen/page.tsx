@@ -9,6 +9,8 @@ import Footer from "@/components/Footer/Footer";
 import Pagination from "@/components/Pagination/Pagination";
 import BlogCard from "@/components/BlogCard/BlogCard";
 
+
+
 // Fetch Tag Data
 async function fetchTagsData() {
     const query = `*[_type == 'tag'] { title }`;
