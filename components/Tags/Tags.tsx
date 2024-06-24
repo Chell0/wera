@@ -1,29 +1,11 @@
 import { useState } from "react";
+import { TagsProps } from "@/app/lib/interface";
 
 
-const tags = [
-    'stadtraum',
-    'verwaltung',
-    'bildung',
-    'veranstaltung',
-    'kirche',
-    'kunst und kultur',
-    'literatur',
-    'politik',
-    'wissenschaft',
-    'klima',
-    'medizin',
-    'koloniale kontinuität'
-];
-
-interface TagsProps {
-    onTagSelect: (selectedTag: string | null) => void;
-}
-
-
-export default function Tags({ onTagSelect }: TagsProps) {
+export default function Tags({ onTagSelect, tags }: TagsProps) {
     const [selectedTag, setSelectedTag] = useState<string | null>(null);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
 
     const handleTagClick = (tag: string | null) => {
         setSelectedTag(tag);
@@ -49,10 +31,10 @@ export default function Tags({ onTagSelect }: TagsProps) {
                 {tags.map((tag, index) => (
                     <button
                         key={index}
-                        onClick={() => handleTagClick(tag)}
-                        className={`${selectedTag === tag ? 'bg-orange-500 text-white' : 'bg-gray-200 text-gray-700'} rounded-full py-2 px-4`}
+                        onClick={() => handleTagClick(tag.title)}
+                        className={`${selectedTag === tag.title ? 'bg-orange-500 text-white' : 'bg-gray-200 text-gray-700'} rounded-full py-2 px-4`}
                     >
-                        {tag}
+                        {tag.title}
                     </button>
                 ))}
             </div>
@@ -72,8 +54,16 @@ export default function Tags({ onTagSelect }: TagsProps) {
                         {tags.map((tag, index) => (
                             <button
                                 key={index}
-                                onClick={() => handleTagClick(tag)}
-                                className={`block w-full text-left px-4 py-2 ${selectedTag === tag ? 'bg-orange-500 text-white' : 'text-gray-700'}`}>{tag}
+                                onClick={() => handleTagClick(tag.title)}
+                                className={
+                                    `block w-full text-left px-4 py-2
+                                    ${selectedTag === tag.title ?
+                                        'bg-orange-500 text-white' :
+                                        'text-gray-700'
+                                    }`
+                                }
+                            >
+                                {tag.title}
                             </button>
                         ))}
                     </div>

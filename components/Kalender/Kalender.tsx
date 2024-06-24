@@ -1,92 +1,43 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/solid";
+import { client } from "@/app/lib/sanityClient";
+import { Event } from "@/app/lib/interface";
 
-type Event = {
-    date: string;
-    time: string;
-    title: string;
-    description: string;
-    type: string;
-    detailsLink: string;
-};
 
-const events: Event[] = [
-    {
-        date: "2024-05-30",
-        time: "19:00 Uhr",
-        title: "Film & Podiumsdiskussion: Outgrow the System",
-        description:
-            "Das ist eine Einladung zu einer konkreten Veranstaltung UND zur weiteren Vernetzung!",
-        type: "Diskussion, Film, Podiumsdiskussion",
-        detailsLink: "https://example.com/event1",
-    },
-    {
-        date: "2024-05-31",
-        time: "19:00 Uhr",
-        title: "Film & Podiumsdiskussion: Outgrow the System",
-        description:
-            "Das ist eine Einladung zu einer konkreten Veranstaltung UND zur weiteren Vernetzung!",
-        type: "Diskussion, Film, Podiumsdiskussion",
-        detailsLink: "https://example.com/event1",
-    },
-    {
-        date: "2024-06-01",
-        time: "19:00 Uhr",
-        title: "Film & Podiumsdiskussion: Outgrow the System",
-        description:
-            "Das ist eine Einladung zu einer konkreten Veranstaltung UND zur weiteren Vernetzung!",
-        type: "Diskussion, Film, Podiumsdiskussion",
-        detailsLink: "https://example.com/event1",
-    },
-    {
-        date: "2024-06-02",
-        time: "19:00 Uhr",
-        title: "Film & Podiumsdiskussion: Outgrow the System",
-        description:
-            "Das ist eine Einladung zu einer konkreten Veranstaltung UND zur weiteren Vernetzung!",
-        type: "Diskussion, Film, Podiumsdiskussion",
-        detailsLink: "https://example.com/event1",
-    },
-    {
-        date: "2024-06-03",
-        time: "19:00 Uhr",
-        title: "Filmvorführung (OmU) & Diskussion: Outgrow the System",
-        description:
-            "Ein Dokumentarfilm über alternative, nachhaltige Wirtschaftssysteme.",
-        type: "Filmvorführung, Diskussion",
-        detailsLink: "https://example.com/event2",
-    },
-    {
-        date: "2024-06-04",
-        time: "10:30 Uhr",
-        title: "Einladung Crashkurs Rohstoffwende 2024: Die Reise des Kupfers",
-        description:
-            "Von der Mine über den Hafen bis hin zur ressourcenleichten Mobilität.",
-        type: "Workshop",
-        detailsLink: "https://example.com/event3",
-    },
-    {
-        date: "2024-06-05",
-        time: "19:00 Uhr",
-        title: "Linker Antisemitismus",
-        description: "Was hat das mit linkem Antisemitismus zu tun?",
-        type: "Austausch, Diskussion, Vortrag",
-        detailsLink: "https://example.com/event4",
-    },
-];
+export const revalidate = 30
+
 
 export default function Kalender() {
+    const [events, setEvents] = useState<Event[]>([]);
     const [openEventIndex, setOpenEventIndex] = useState<number | null>(null);
     const [filter, setFilter] = useState<string>("");
+
+    useEffect(() => {
+        const fetchEvents = async () => {
+            const eventsData = await client.fetch(
+                `*[_type == "event"] | order(_createdAt desc) {
+                date,
+                time,
+                title,
+                description,
+                type,
+                detailsLink
+                }`
+            );
+            setEvents(eventsData);
+        };
+
+        fetchEvents();
+    }, []);
 
     const toggleEvent = (index: number) => {
         setOpenEventIndex(openEventIndex === index ? null : index);
     };
 
     const filteredEvents = events.filter((event) =>
-        event.title.toLowerCase().includes(filter.toLowerCase()),
+        event.title.toLowerCase().includes(filter.toLowerCase())
     );
 
     return (
@@ -114,7 +65,7 @@ export default function Kalender() {
                                 <div className="text-xl font-bold">{event.title}</div>
                                 <div className="text-sm text-gray-800">{event.type}</div>
                                 <div className="text-sm">
-                                    {event.date} - {event.time}
+                                    {event.date}, {event.time}
                                 </div>
                             </div>
                             <button onClick={() => toggleEvent(index)}>
@@ -128,7 +79,6 @@ export default function Kalender() {
                         <div
                             className={`transition-all duration-300 overflow-hidden ${openEventIndex === index ? "max-h-screen" : "max-h-0"}`}
                         >
-
                             {openEventIndex === index && (
                                 <div className="mt-2 bg-white p-2 rounded">
                                     <p className="text-gray-600 text-sm">{event.description}</p>

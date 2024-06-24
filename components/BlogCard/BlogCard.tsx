@@ -1,23 +1,29 @@
+import { ThemenCard } from "@/app/lib/interface";
 import Image from "next/image";
 import Link from "next/link";
+import ShowMoreButton from "../ShowMoreButton/ShowMoreButton";
+import { urlFor } from "@/app/lib/sanityClient";
 
-type BlogCardProps = {
-    imageUrl: string,
-    title: string,
-    description: string
-}
 
-export default function BlogCard({ imageUrl, title, description }: BlogCardProps) {
+export default function BlogCard({ card }: { card: ThemenCard }) {
+
+    const { title, smallDescription, currentSlug, titleImage } = card;
+
     return (
         <>
-            <div className="max-w-screen-lg rounded-lg shadow-lg overflow-hidden">
+            <div className="max-w-screen-lg rounded-lg shadow-xl overflow-hidden">
                 <div className="relative w-full h-56">
-                    <Image src={imageUrl} alt="Blog Image" layout="fill" objectFit="cover" />
+                    <Image
+                        src={urlFor(card.titleImage).url()}
+                        alt={card.title}
+                        fill={true}
+                        className={`rounded-t-lg object-cover overflow-hidden`} />
                 </div>
                 <div className="bg-white p-5">
-                    <h3 className="text-orange-500 text-lg font-semibold mb-3">{title}</h3>
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-3">{description}</p>
-                    {/* <Link href="/" className="bg-orange-500 rounded-lg text-white py-2 px-4 text-sm hover:underline">Mehr</Link> */}
+                    <h3 className="text-orange-500 text-lg font-semibold line-clamp-1 mb-3 cursor-pointer hover:underline">
+                        <Link href={`/themen/${card.currentSlug}`}>{card.title}</Link>
+                    </h3>
+                    <p className="text-gray-600 text-sm mb-4 line-clamp-4">{card.smallDescription}</p>
                 </div>
             </div>
         </>

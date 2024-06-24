@@ -8,7 +8,7 @@ export default function Banner() {
                 <Image
                     src="/Machtbewusst.png"
                     alt="Banner Image"
-                    layout="fill"
+                    fill={true}
                     className="object-cover rounded-lg"
                     quality={100}
                 />

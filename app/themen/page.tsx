@@ -1,57 +1,160 @@
-// "use client"
-// import { useState } from "react";
-// import Tags from "@/components/Tags/Tags";
-// import Image from "next/image";
-// import Link from "next/link";
-// import NavBar from "@/components/NavBar/NavBar";
-// import Footer from "@/components/Footer/Footer";
-// import Pagination from "@/components/Pagination/Pagination";
+"use client"
+
+import { useEffect, useState } from "react";
+import { client } from "@/app/lib/sanityClient";
+import { allTags, ThemenCard } from "@/app/lib/interface";
+import Tags from "@/components/Tags/Tags";
+import NavBar from "@/components/NavBar/NavBar";
+import Footer from "@/components/Footer/Footer";
+import Pagination from "@/components/Pagination/Pagination";
+import BlogCard from "@/components/BlogCard/BlogCard";
+
+// Fetch Tag Data
+async function fetchTagsData() {
+    const query = `*[_type == 'tag'] { title }`;
+    const data = await client.fetch(query);
+    return data;
+}
+
+// Fetch Blog Data
+async function fetchBlogsData() {
+    const query = `
+    *[_type == 'blog'] | order(_createdAt desc) {
+        title,
+        "currentSlug": slug.current,
+        titleImage,
+        smallDescription,
+        "tags": tags[]->title
+    }`;
+    const data = await client.fetch(query);
+    return data;
+}
+
+export const BlogPage = () => {
+    const [tagsData, setTagsData] = useState<allTags[]>([]);
+    const [blogsData, setBlogsData] = useState<ThemenCard[]>([]);
+    const [filteredBlogs, setFilteredBlogs] = useState<ThemenCard[]>([]);
+    const [selectedTag, setSelectedTag] = useState<string | null>(null);
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const [tags, blogs] = await Promise.all([fetchTagsData(), fetchBlogsData()]);
+                setTagsData(tags);
+                setBlogsData(blogs);
+                setFilteredBlogs(blogs);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchData();
+    }, []);
+
+    // Handle Tag Select
+    const handleTagSelect = (selectedTag: string | null) => {
+        console.log("Selected tag:", selectedTag);
+        setSelectedTag(selectedTag);
+
+        if (selectedTag) {
+            const filtered = blogsData.filter(blog => blog.tags.includes(selectedTag));
+            setFilteredBlogs(filtered);
+        } else {
+            setFilteredBlogs(blogsData);
+        }
+
+        setCurrentPage(1); // Reset to first page when a new tag is selected
+    };
+
+    // Handle Page Change
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+    };
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    // Number of Blogs per page
+    const ITEMS_PER_PAGE = 12;
+    const totalPages = Math.ceil(filteredBlogs.length / ITEMS_PER_PAGE);
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const currentBlogs = filteredBlogs.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+    return (
+        <>
+            <div className={`relative bg-cover bg-no-repeat bg-local`} style={{ backgroundImage: `url("/themen-bg.png")` }}>
+                <main className={`p-6`}>
+                    <NavBar />
+                    <Tags onTagSelect={handleTagSelect} tags={tagsData} />
+                    <div className="container mx-auto p-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-20">
+                            {currentBlogs.map((card: ThemenCard) => (
+                                <BlogCard key={card.currentSlug} card={card} />
+                            ))}
+                        </div>
+                    </div>
+                    {totalPages > 1 && (
+                        <Pagination
+                            currentPage={currentPage}
+                            totalPages={totalPages}
+                            onPageChange={handlePageChange}
+                        />
+                    )}
+                    <Footer />
+                </main>
+            </div>
+        </>
+    );
+};
+
+export default BlogPage;
 
 
 
-// export default function BlogPage() {
-//     const [selectedTag, setSelectedTag] = useState<string | null>(null);
+// export default function BlogPage({ titel, titelImage, smallDescription, tags, slug }: BlogProps) {
+//     const [selectedTag, setSelectedTag] = useState(null);
 //     const [currentPage, setCurrentPage] = useState(1);
+//     const [allBlogs, setAllBlogs] = useState([]);
+//     const [tags, setTags] = useState([]);
+
+//     useEffect(() => {
+//         const fetchBlogs = async () => {
+//             const blogs = await client.fetch(`*[_type == "themen"]{
+//                 titel,
+//                 "image": titelImage.asset->url,
+//                 smallDescription,
+//                 "tags": tags[]->titel,
+//                 "slug": slug.current
+//             }`);
+//             setAllBlogs(blogs);
+//         };
+
+//         const fetchTags = async () => {
+//             const tags = await client.fetch(`*[_type == "tag"]{
+//                 title
+//             }`);
+//             setTags(tags.map((tag: { title: any; }) => tag.title));
+//         };
+
+//         fetchBlogs();
+//         fetchTags();
+//     }, []);
 
 //     const handleTagSelect = (tag: string | null) => {
 //         setSelectedTag(tag);
 //         setCurrentPage(1);
-//     };
+//     }
 
-//     const allBlogs = [
-//         { id: 1, title: 'Blog Post 1', image: '/banner.png', tags: ['stadtraum', 'verwaltung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-1" },
-//         { id: 2, title: 'Blog Post 2', image: '/banner.png', tags: ['verwaltung', 'bildung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-2" },
-//         { id: 3, title: 'Blog Post 3', image: '/banner.png', tags: ['stadtraum', 'bildung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-3" },
-//         { id: 4, title: 'Blog Post 4', image: '/banner.png', tags: ['stadtraum', 'veranstaltung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-4" },
-//         { id: 5, title: 'Blog Post 5', image: '/banner.png', tags: ['stadtraum', 'verwaltung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-5" },
-//         { id: 6, title: 'Blog Post 6', image: '/banner.png', tags: ['verwaltung', 'bildung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-6" },
-//         { id: 7, title: 'Blog Post 7', image: '/banner.png', tags: ['stadtraum', 'bildung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-7" },
-//         { id: 8, title: 'Blog Post 8', image: '/banner.png', tags: ['stadtraum', 'veranstaltung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-8" },
-//         { id: 9, title: 'Blog Post 9', image: '/banner.png', tags: ['stadtraum', 'verwaltung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-9" },
-//         { id: 10, title: 'Blog Post 10', image: '/banner.png', tags: ['verwaltung', 'bildung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-10" },
-//         { id: 11, title: 'Blog Post 11', image: '/banner.png', tags: ['stadtraum', 'bildung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-11" },
-//         { id: 12, title: 'Blog Post 12', image: '/banner.png', tags: ['stadtraum', 'veranstaltung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-12" },
-//         { id: 13, title: 'Blog Post 13', image: '/banner.png', tags: ['stadtraum', 'verwaltung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-13" },
-//         { id: 14, title: 'Blog Post 14', image: '/banner.png', tags: ['verwaltung', 'bildung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-14" },
-//         { id: 15, title: 'Blog Post 15', image: '/banner.png', tags: ['stadtraum', 'bildung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-15" },
-//         { id: 16, title: 'Blog Post 16', image: '/banner.png', tags: ['stadtraum', 'veranstaltung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-16" },
-//         { id: 17, title: 'Blog Post 17', image: '/banner.png', tags: ['stadtraum', 'verwaltung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-17" },
-//         { id: 18, title: 'Blog Post 18', image: '/banner.png', tags: ['verwaltung', 'bildung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-18" },
-//         { id: 19, title: 'Blog Post 19', image: '/banner.png', tags: ['stadtraum', 'bildung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-19" },
-//         { id: 20, title: 'Blog Post 20', image: '/banner.png', tags: ['stadtraum', 'veranstaltung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-20" },
-//         { id: 21, title: 'Blog Post 21', image: '/banner.png', tags: ['stadtraum', 'verwaltung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-21" },
-//         { id: 22, title: 'Blog Post 22', image: '/banner.png', tags: ['verwaltung', 'bildung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-22" },
-//         { id: 23, title: 'Blog Post 23', image: '/banner.png', tags: ['stadtraum', 'bildung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-23" },
-//         { id: 24, title: 'Blog Post 24', image: '/banner.png', tags: ['stadtraum', 'veranstaltung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-24" },
-//         // Add more blog posts here...
-//     ];
 
 //     const filteredBlogs = selectedTag
-//         ? allBlogs.filter(blog => blog.tags.includes(selectedTag))
+//         ? allBlogs.filter((blog) => blog.tags.includes(selectedTag))
 //         : allBlogs;
 
-//     const ITEMS_PER_PAGE = 12;
-
+//     const ITEMS_PER_PAGE = 12
 //     const totalPages = Math.ceil(filteredBlogs.length / ITEMS_PER_PAGE);
 
 //     const handlePageChange = (page: number) => {
@@ -61,7 +164,6 @@
 //     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
 //     const currentBlogs = filteredBlogs.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
-
 //     return (
 //         <>
 //             <div className={`relative bg-cover bg-no-repeat bg-local`}
@@ -69,27 +171,17 @@
 //                 <main className={`p-6`}>
 //                     <NavBar />
 //                     <div className="container mx-auto p-4">
-//                         <Tags onTagSelect={handleTagSelect} />
+//                         <Tags onTagSelect={handleTagSelect} tags={[]} />
 //                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
-//                             {currentBlogs.map(blog => (
-//                                 <div key={blog.id} className="bg-white rounded-lg shadow-md overflow-hidden">
-//                                     <Image src={blog.image} alt={blog.title} width={2000} height={870} className={`object-contain`} />
-//                                     <div className="p-3">
-//                                         <h2 className="text-md font-semibold mb-2">
-//                                             <Link href={`/blog/slug`} className="text-orange-500 font-semibold hover:underline">
-//                                                 {blog.title}
-//                                             </Link>
-//                                         </h2>
-//                                         <p className="text-gray-600 text-sm mb-4 line-clamp-3">{blog.content}</p>
-//                                         <div className="flex flex-wrap gap-2">
-//                                             {blog.tags.map((tag, index) => (
-//                                                 <span key={index} className="bg-gray-100 text-orange-500 text-xs font-semibold mr-2 px-2.5 py-1 rounded">
-//                                                     {tag}
-//                                                 </span>
-//                                             ))}
-//                                         </div>
-//                                     </div>
-//                                 </div>
+//                             {currentBlogs.map((blog, index) => (
+//                                 <BlogCard
+//                                     key={index}
+//                                     image={blog.titelImage}
+//                                     title={blog.titel}
+//                                     smallDescription={blog.smallDescription}
+//                                     tags={blog.tags}
+//                                     slug={blog.slug}
+//                                 />
 //                             ))}
 //                         </div>
 //                     </div>
@@ -106,110 +198,3 @@
 //         </>
 //     );
 // };
-
-
-"use client"
-import { useState } from "react";
-import Tags from "@/components/Tags/Tags";
-import Image from "next/image";
-import Link from "next/link";
-import NavBar from "@/components/NavBar/NavBar";
-import Footer from "@/components/Footer/Footer";
-import Pagination from "@/components/Pagination/Pagination";
-
-export default function BlogPage() {
-    const [selectedTag, setSelectedTag] = useState<string | null>(null);
-    const [currentPage, setCurrentPage] = useState(1);
-
-    const handleTagSelect = (tag: string | null) => {
-        setSelectedTag(tag);
-        setCurrentPage(1);
-    };
-
-    const allBlogs = [
-        { id: 1, title: 'Blog Post 1', image: '/banner.png', tags: ['stadtraum', 'verwaltung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-1" },
-        { id: 2, title: 'Blog Post 2', image: '/banner.png', tags: ['verwaltung', 'bildung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-2" },
-        { id: 3, title: 'Blog Post 3', image: '/banner.png', tags: ['stadtraum', 'bildung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-3" },
-        { id: 4, title: 'Blog Post 4', image: '/banner.png', tags: ['stadtraum', 'veranstaltung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-4" },
-        { id: 5, title: 'Blog Post 5', image: '/banner.png', tags: ['stadtraum', 'verwaltung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-5" },
-        { id: 6, title: 'Blog Post 6', image: '/banner.png', tags: ['verwaltung', 'bildung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-6" },
-        { id: 7, title: 'Blog Post 7', image: '/banner.png', tags: ['stadtraum', 'bildung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-7" },
-        { id: 8, title: 'Blog Post 8', image: '/banner.png', tags: ['stadtraum', 'veranstaltung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-8" },
-        { id: 9, title: 'Blog Post 9', image: '/banner.png', tags: ['stadtraum', 'verwaltung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-9" },
-        { id: 10, title: 'Blog Post 10', image: '/banner.png', tags: ['verwaltung', 'bildung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-10" },
-        { id: 11, title: 'Blog Post 11', image: '/banner.png', tags: ['stadtraum', 'bildung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-11" },
-        { id: 12, title: 'Blog Post 12', image: '/banner.png', tags: ['stadtraum', 'veranstaltung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-12" },
-        { id: 13, title: 'Blog Post 13', image: '/banner.png', tags: ['stadtraum', 'verwaltung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-13" },
-        { id: 14, title: 'Blog Post 14', image: '/banner.png', tags: ['verwaltung', 'bildung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-14" },
-        { id: 15, title: 'Blog Post 15', image: '/banner.png', tags: ['stadtraum', 'bildung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-15" },
-        { id: 16, title: 'Blog Post 16', image: '/banner.png', tags: ['stadtraum', 'veranstaltung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-16" },
-        { id: 17, title: 'Blog Post 17', image: '/banner.png', tags: ['stadtraum', 'verwaltung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-17" },
-        { id: 18, title: 'Blog Post 18', image: '/banner.png', tags: ['verwaltung', 'bildung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-18" },
-        { id: 19, title: 'Blog Post 19', image: '/banner.png', tags: ['stadtraum', 'bildung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-19" },
-        { id: 20, title: 'Blog Post 20', image: '/banner.png', tags: ['stadtraum', 'veranstaltung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-20" },
-        { id: 21, title: 'Blog Post 21', image: '/banner.png', tags: ['stadtraum', 'verwaltung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-21" },
-        { id: 22, title: 'Blog Post 22', image: '/banner.png', tags: ['verwaltung', 'bildung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-22" },
-        { id: 23, title: 'Blog Post 23', image: '/banner.png', tags: ['stadtraum', 'bildung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-23" },
-        { id: 24, title: 'Blog Post 24', image: '/banner.png', tags: ['stadtraum', 'veranstaltung'], content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", slug: "blog-post-24" },
-        // Add more blog posts here...
-    ];
-
-    const filteredBlogs = selectedTag
-        ? allBlogs.filter(blog => blog.tags.includes(selectedTag))
-        : allBlogs;
-
-    const ITEMS_PER_PAGE = 12;
-
-    const totalPages = Math.ceil(filteredBlogs.length / ITEMS_PER_PAGE);
-
-    const handlePageChange = (page: number) => {
-        setCurrentPage(page);
-    };
-
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    const currentBlogs = filteredBlogs.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-
-    return (
-        <>
-            <div className={`relative bg-cover bg-no-repeat bg-local`}
-                style={{ backgroundImage: `url("/themen-bg.png")` }}>
-                <main className={`p-6`}>
-                    <NavBar />
-                    <div className="container mx-auto p-4">
-                        <Tags onTagSelect={handleTagSelect} />
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
-                            {currentBlogs.map(blog => (
-                                <div key={blog.id} className="bg-white rounded-lg shadow-md overflow-hidden">
-                                    <Image src={blog.image} alt={blog.title} width={2000} height={870} className={`object-contain`} />
-                                    <div className="p-3">
-                                        <h2 className="text-md font-semibold mb-2">
-                                            <Link href={`/blog/${blog.slug}`} className="text-orange-500 font-semibold hover:underline">
-                                                {blog.title}
-                                            </Link>
-                                        </h2>
-                                        <p className="text-gray-600 text-sm mb-4 line-clamp-3">{blog.content}</p>
-                                        <div className="flex flex-wrap gap-2">
-                                            {blog.tags.map((tag, index) => (
-                                                <span key={index} className="bg-gray-100 text-orange-500 text-xs font-semibold mr-2 px-2.5 py-1 rounded">
-                                                    {tag}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                    {totalPages > 1 && (
-                        <Pagination
-                            currentPage={currentPage}
-                            totalPages={totalPages}
-                            onPageChange={handlePageChange}
-                        />
-                    )}
-                    <Footer />
-                </main >
-            </div >
-        </>
-    );
-};
