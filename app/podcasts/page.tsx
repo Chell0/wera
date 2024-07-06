@@ -9,7 +9,7 @@ import NavBar from "@/components/NavBar/NavBar";
 
 // Fetch materials from sanity
 async function fetchCategoryMaterials() {
-    const query = `
+  const query = `
     *[_type == "category" && title == "Podcasts"] {
     title,
       "materials": *[_type == "material" && references(^._id)] {
@@ -20,46 +20,52 @@ async function fetchCategoryMaterials() {
         }
     }`;
 
-    const categories = await client.fetch(query);
-    if (categories.length > 0) {
-        return categories[0].materials;
-    }
-    return [];
+  const categories = await client.fetch(query);
+  if (categories.length > 0) {
+    return categories[0].materials;
+  }
+  return [];
 }
 
 export default function Page() {
-    const [materials, setMaterials] = useState<MaterialCard[]>([]);
+  const [materials, setMaterials] = useState<MaterialCard[]>([]);
 
-    useEffect(() => {
-        async function getData() {
-            const data = await fetchCategoryMaterials();
-            setMaterials(data);
-        }
+  useEffect(() => {
+    async function getData() {
+      const data = await fetchCategoryMaterials();
+      setMaterials(data);
+    }
 
-        getData();
-    }, []);
+    getData();
+  }, []);
 
-    return (
-        <>
-            <div className="relative bg-cover bg-no-repeat max-h-full max-w-[1440px]" style={{ backgroundImage: `url("/materialpage-bg.png")` }}>
-                <main className="p-6">
-                    <NavBar />
-                    <div className="w-full flex items-center justify-center mt-28 sm:px-2">
-                        <div className="bg-white shadow-lg rounded-xl max-w-md sm:px-4">
-                            <h2 className="text-orange-500 py-2 px-4 lg:text-3xl md:text-md sm:text-sm font-bold text-center">
-                                Podcasts Materials
-                            </h2>
-                        </div>
-                    </div>
-                    {/*Material Cards*/}
-                    <div className={`grid grid-cols-1 lg:grid-cols-4 sm:grid-cols-2 gap-6 mt-20 px-4`}>
-                        {materials.map((material) => (
-                            <MaterialCards key={material.title} card={material} />
-                        ))}
-                    </div>
-                    <Footer />
-                </main>
+  return (
+    <>
+      <div
+        className="relative bg-cover bg-no-repeat max-h-full max-w-[1440px]"
+        style={{ backgroundImage: `url("/materialpage-bg.png")` }}
+      >
+        <main className="p-6">
+          <NavBar />
+          <div className="w-full flex items-center justify-center mt-28 sm:px-2">
+            <div className="bg-white shadow-lg rounded-xl max-w-md sm:px-4">
+              <h2 className="text-orange-500 py-2 px-4 lg:text-3xl md:text-md sm:text-sm font-bold text-center">
+                Unser Podcasts
+              </h2>
             </div>
-        </>
-    )
+          </div>
+          {/*Material Cards*/}
+          <div
+            className={`grid grid-cols-1 lg:grid-cols-4 sm:grid-cols-2 gap-6 mt-20 px-4`}
+          >
+            {materials.map((material) => (
+              <MaterialCards key={material.title} card={material} />
+            ))}
+          </div>
+          <Footer />
+        </main>
+      </div>
+    </>
+  );
 }
+

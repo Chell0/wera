@@ -44,7 +44,7 @@ export default function Kalender() {
         <div className="w-full flex items-center justify-center mt-10 sm:px-2">
           <div className="bg-white shadow-lg rounded-xl max-w-lg sm:px-4">
             <h2 className="text-orange-500 py-2 px-2 lg:text-3xl md:text-xl sm:text-lg font-bold text-center">
-              Kalender Events
+              Unser Kalender Veranstaltungen
             </h2>
           </div>
         </div>
