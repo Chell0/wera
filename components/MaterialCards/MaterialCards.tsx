@@ -9,13 +9,13 @@ export default function MaterialCards({ card }: { card: MaterialCard }) {
 
   return (
     <>
-      <div className="max-w-screen-lg rounded-xl shadow-xl overflow-hidden">
+      <div className="max-w-screen-lg shadow-lg rounded-xl overflow-hidden">
         <div className="relative w-full h-48">
           <Image
             src={urlFor(titleImage).url()}
             alt={title}
             fill={true}
-            className={`bg-stone-50 object-fill overflow-hidden`}
+            className={`bg-stone-50 rounded-t-xl object-fill overflow-hidden`}
           />
         </div>
         <div className="bg-amber-50 p-5">
