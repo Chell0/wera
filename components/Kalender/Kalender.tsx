@@ -52,7 +52,16 @@ export default function Kalender() {
           <p className="text-left text-md text-gray-600">
             An dieser Stelle könnt ihr eine Vielzahl an aktuellen
             Veranstaltungsterminen entdecken, die sich intensiv mit den Themen
-            um (Post-) Kolonialismus und Dekolonisierung befassen.
+            um (Post-) Kolonialismus und Dekolonisierung befassen.{" "}
+            <Link
+              href={`https://cloud.hamburg.global/index.php/apps/forms/s/j7kFXRTtALSMM4DfEEJt6Faa`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-orange-500 font-semibold"
+            >
+              Hier
+            </Link>{" "}
+            könnt ihr eure Veranstaltung teilen.
           </p>
         </div>
         <input

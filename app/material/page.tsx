@@ -19,7 +19,7 @@ export default function Page() {
             </div>
           </div>
           <div className="bg-white p-8 rounded-xl shadow-xl mt-20 mx-auto w-full sm:w-[1016.95px]">
-            <p className="mb-4 text-gray-600 text-left text-md">
+            <p className="mb-4 text-gray-600 text-left text-sm">
               Auf der Seite Material bekommt ihr eine Vielzahl von
               Materialsammlungen rund um das Thema (Post-) Kolonialismus und
               Dekolonisierung. In den Rubriken Bildungsmaterial, Videos,

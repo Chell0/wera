@@ -55,12 +55,12 @@ export default function Home() {
           <div className="flex items-center justify-center mt-20">
             <Banner />
           </div>
-          <div className="flex items-center justify-center p-4 mt-24">
+          <div className="flex items-center justify-center p-4 mt-20">
             <About />
           </div>
           <div className="w-full flex items-center justify-center mt-28 sm:px-2">
             <div className="bg-white shadow-lg rounded-lg max-w-md sm:px-4">
-              <h2 className="text-orange-500 text-xl py-2 px-4 sm:text-md md:text-xl lg:text-2xl font-medium text-center">
+              <h2 className="text-orange-500 text-xl py-2 px-4 sm:text-md md:text-xl lg:text-2xl font-semibold text-center">
                 Aktuelle Blogeinträge
               </h2>
             </div>
@@ -76,7 +76,7 @@ export default function Home() {
             )}
           </div>
           <div
-            className={`flex flex-row items-end justify-end md:-mr-32 mt-10`}
+            className={`flex flex-row items-end justify-end md:-mr-36 sm:-mr-32 mt-10`}
           >
             <ShowMoreButton href={"/themen"} label={"Mehr"} />
           </div>

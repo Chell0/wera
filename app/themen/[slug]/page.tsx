@@ -40,9 +40,9 @@ export default async function ThemenArticle({
         <main className={`p-6`}>
           <NavBar />
           <div
-            className={`container mx-auto mt-20 bg-white p-10 rounded-lg shadow-2xl max-w-7xl`}
+            className={`container max-w-screen-md mx-auto mt-20 bg-white p-10 rounded-lg shadow-2xl`}
           >
-            <h1 className="mt-5 mb-10 block text-xl text-center text-orange-500 leading-8 font-bold tracking-wide uppercase">
+            <h1 className="mt-5 mb-10 block lg:text-3xl text-center text-orange-500 leading-8 font-bold tracking-wide uppercase">
               {data.title}
             </h1>
             {/* Blog Image */}
@@ -50,15 +50,16 @@ export default async function ThemenArticle({
               <Image
                 src={urlFor(data.titleImage).url()}
                 alt={data.title}
-                width={1024}
-                height={768}
+                width={762}
+                height={572}
                 priority
-                className="object-cover rounded-lg mt-8 shadow-xl"
+                className="object-cover object-center rounded m-0 mt-8 shadow-xl"
                 quality={100}
+                style={{ maxHeight: `480px` }}
               />
             </div>
             {/* Blog Content */}
-            <div className="max-w-full mx-auto mt-20 prose prose-sm prose-stone prose-headings:text-xl prose-headings:text-orange-500 prose-headings:font-semibold prose-a:text-orange-500 prose-a:target:_blank prose-a:rel:noreferrer">
+            <div className="max-w-screen-md mx-auto mt-20 prose prose-sm prose-stone prose-headings:text-2xl prose-headings:text-orange-500 prose-headings:font-semibold prose-a:text-orange-500 prose-a:target:_blank prose-a:rel:noreferrer">
               <PortableText value={data.content} />
             </div>
             {/* Tags */}
