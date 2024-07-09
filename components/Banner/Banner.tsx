@@ -4,13 +4,15 @@ export default function Banner() {
     return (
         <>
 
-            <div className="relative w-full pb-[43.5%] overflow-hidden rounded-lg shadow-xl">
+            <div className="relative rounded-xl shadow-xl">
                 <Image
                     src="/Machtbewusst.png"
                     alt="Banner Image"
-                    fill={true}
-                    className="object-cover rounded-lg"
+                    width={1020}
+                    height={572}
+                    className="object-cover object-center rounded-xl overflow-hidden"
                     quality={100}
+                    style={{ maxHeight: `480px` }}
                 />
             </div>
 

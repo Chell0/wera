@@ -15,7 +15,11 @@ export default function MaterialCards({ card }: { card: MaterialCard }) {
             src={urlFor(titleImage).url()}
             alt={title}
             fill={true}
-            className={`bg-stone-50 rounded-t-xl object-fill overflow-hidden`}
+            // width={762}
+            // height={572}
+            className={`bg-stone-50 rounded-t-xl object-center overflow-hidden`}
+            quality={100}
+            style={{ maxHeight: `480px` }}
           />
         </div>
         <div className="bg-amber-50 p-5">

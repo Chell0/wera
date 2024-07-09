@@ -4,6 +4,8 @@ import Link from "next/link";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/solid";
 import { client } from "@/app/lib/sanityClient";
 import { Event } from "@/app/lib/interface";
+import { differenceInDays, parseISO } from "date-fns";
+
 
 export const revalidate = 30;
 
@@ -15,16 +17,32 @@ export default function Kalender() {
   useEffect(() => {
     const fetchEvents = async () => {
       const eventsData = await client.fetch(
-        `*[_type == "event"] | order(_createdAt asc) {
-                date,
-                time,
-                title,
-                description,
-                type,
-                detailsLink
-                }`,
+        `*[_type == "event"] | order(date asc) {
+          date,
+          time,
+          title,
+          description,
+          type,
+          detailsLink
+        }`,
       );
-      setEvents(eventsData);
+      const currentDate = new Date();
+      const currentEvents = eventsData.filter((event: Event) => {
+        const eventDate = parseISO(event.date);
+        return differenceInDays(eventDate, currentDate) >= 0;
+      });
+
+      const pastEvents = eventsData.filter((event: Event) => {
+        const eventDate = parseISO(event.date);
+        return differenceInDays(eventDate, currentDate) < 0;
+      });
+
+      // Delete past events from Sanity
+      pastEvents.forEach(async (event: Event) => {
+        await client.delete(event.date);
+      });
+
+      setEvents(currentEvents);
     };
 
     fetchEvents();
@@ -44,7 +62,7 @@ export default function Kalender() {
         <div className="w-full flex items-center justify-center mt-10 sm:px-2">
           <div className="bg-white shadow-lg rounded-xl max-w-lg sm:px-4">
             <h2 className="text-orange-500 py-2 px-2 lg:text-3xl md:text-xl sm:text-lg font-bold text-center">
-              Unser Kalender Veranstaltungen
+              Kalender Veranstaltungen
             </h2>
           </div>
         </div>
