@@ -9,31 +9,28 @@ export default function MaterialCards({ card }: { card: MaterialCard }) {
 
   return (
     <>
-      <div className="max-w-screen-lg shadow-lg rounded-xl overflow-hidden">
-        <div className="relative w-full h-48">
+      <div className="bg-amber-50 h-[450px] max-w-screen-lg rounded-lg shadow-md overflow-hidden">
+        <div className="bg-white flex justify-center items-center h-56">
           <Image
             src={urlFor(titleImage).url()}
             alt={title}
-            fill={true}
-            // width={762}
-            // height={572}
-            className={`bg-stone-50 rounded-t-xl object-center overflow-hidden`}
-            quality={100}
+            // fill={true}
+            height={150}
+            width={150}
             style={{ maxHeight: `480px` }}
+            quality={100}
+            className={`rounded-lg object-cover overflow-hidden`}
           />
         </div>
-        <div className="bg-amber-50 p-5">
-          <h3 className="text-orange-500 text-lg font-semibold line-clamp-1 mb-2 cursor-pointer hover:underline">
-            {title}
-          </h3>
-          <p className="text-gray-600 text-sm mb-3 line-clamp-2">
-            {smallDescription}
-          </p>
+        {/* <div className="bg-amber-50 p-5"> */}
+        <div className="bg-amber-50 flex flex-col justify-center items-center p-2">
+          <h3 className="text-orange-500 text-md text-left font-semibold mb-3">{title}</h3>
+          <p className="text-gray-600 text-left text-xs mb-2 line-clamp-3">{smallDescription}</p>
           <Link
             href={links}
             target="_blank"
             rel="noopener noreferrer"
-            className={`bg-orange-500 hover:bg-orange-400 hover:text-white text-white text-sm no-underline py-1 px-2 rounded-lg`}
+            className={`bg-orange-500 hover:bg-orange-400 hover:text-white text-white text-sm cursor-pointer no-underline py-1 px-2 rounded-lg`}
           >
             Mehr
           </Link>

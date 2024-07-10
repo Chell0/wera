@@ -59,15 +59,11 @@ export default function Kalender() {
   return (
     <>
       <div className="p-4">
-        <div className="w-full flex items-center justify-center mt-10 sm:px-2">
-          <div className="bg-white shadow-lg rounded-xl max-w-lg sm:px-4">
-            <h2 className="text-orange-500 py-2 px-2 lg:text-3xl md:text-xl sm:text-lg font-bold text-center">
-              Kalender Veranstaltungen
-            </h2>
-          </div>
-        </div>
-        <div className="bg-white p-4 rounded-lg shadow-xl mx-auto mt-20 w-full sm:w-[1016.95px]">
-          <p className="text-left text-md text-gray-600">
+        <div className="bg-white p-5 m-1 rounded-xl shadow-lg items-center justify-center mt-10">
+          <h1 className="text-orange-500 text-3xl font-bold p-3">
+            Veranstaltungskalender
+          </h1>
+          <p className="text-gray-600 text-left text-md p-3">
             An dieser Stelle könnt ihr eine Vielzahl an aktuellen
             Veranstaltungsterminen entdecken, die sich intensiv mit den Themen
             um (Post-) Kolonialismus und Dekolonisierung befassen.{" "}
@@ -82,6 +78,8 @@ export default function Kalender() {
             könnt ihr eure Veranstaltung teilen.
           </p>
         </div>
+
+        {/* Search bar */}
         <input
           type="text"
           placeholder="Filter events..."

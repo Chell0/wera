@@ -93,13 +93,15 @@ export default function BlogPage() {
       >
         <main className={`p-6`}>
           <NavBar />
-          <div className="w-full flex items-center justify-center mt-5 sm:px-2">
-            <div className="bg-white shadow-lg rounded-xl max-w-lg sm:px-4">
-              <h2 className="text-orange-500 py-2 px-4 lg:text-3xl md:text-2xl font-bold text-center">
-                Themen
-              </h2>
-            </div>
+          <div className="bg-white p-5 m-1 rounded-xl shadow-lg items-center justify-center mt-10">
+            <h1 className="text-orange-500 text-3xl font-bold p-3">
+              Themen
+            </h1>
+            <p className="text-gray-600 text-left text-md p-3">
+              Die Themenseite befasst sich mit den aktuellen Geschehnissen und Entwicklungen rund um das Thema Dekolonisierung in Hamburg. Erfahrt hier mehr über die Bewegungen, Initiativen und Diskussionen, die darauf abzielen, Koloniale Kontinuitäten zu hinterfragen und neue dekoloniale Perspektiven aufzuzeigen. Bei Interesse an einem Beitrag schreibt uns gerne eine E-Mail an machtbewusst[at]ossara.de. Viel Spaß beim Lesen und Bewusstmachen!
+            </p>
           </div>
+
           <div className={`mt-10`}>
             <Tags onTagSelect={handleTagSelect} tags={tagsData} />
           </div>

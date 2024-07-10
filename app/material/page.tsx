@@ -11,15 +11,13 @@ export default function Page() {
       >
         <main className="p-6">
           <NavBar />
-          <div className="w-full flex items-center justify-center mt-10 sm:px-2">
-            <div className="bg-white shadow-lg rounded-xl max-w-lg sm:px-4">
-              <h2 className="text-orange-500 py-2 px-2 lg:text-3xl md:text-xl sm:text-lg font-bold text-center">
-                Materials
-              </h2>
-            </div>
+          <div className="w-full ">
           </div>
-          <div className="bg-white p-8 rounded-xl shadow-xl mt-20 mx-auto w-full sm:w-[1016.95px]">
-            <p className="mb-4 text-gray-600 text-left text-sm">
+          <div className="bg-white p-5 m-1 rounded-xl shadow-lg items-center justify-center mt-10">
+            <h1 className="text-orange-500 text-3xl font-bold p-3">
+              Material
+            </h1>
+            <p className="text-gray-600 text-left text-md p-3">
               Auf der Seite Material bekommt ihr eine Vielzahl von
               Materialsammlungen rund um das Thema (Post-) Kolonialismus und
               Dekolonisierung. In den Rubriken Bildungsmaterial, Videos,
@@ -31,7 +29,9 @@ export default function Page() {
               zögert nicht, sie mit uns zu teilen - wir nehmen gerne empfohlene
               oder von euch erstellte Materialien in unsere Sammlung auf.
             </p>
+
           </div>
+
           <Category />
           <Footer />
         </main>

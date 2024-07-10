@@ -50,7 +50,7 @@ export default function Page() {
           <div className="w-full flex items-center justify-center mt-28 sm:px-2">
             <div className="bg-white shadow-lg rounded-xl max-w-md sm:px-4">
               <h2 className="text-orange-500 py-2 px-4 lg:text-3xl md:text-md sm:text-sm font-bold text-center">
-                Unser Podcasts
+                Podcasts
               </h2>
             </div>
           </div>

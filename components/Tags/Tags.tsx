@@ -21,11 +21,10 @@ export default function Tags({ onTagSelect, tags }: TagsProps) {
         <button
           onClick={() => handleTagClick(null)}
           className={`
-                        ${
-                          selectedTag === null
-                            ? "bg-orange-500 text-white"
-                            : "bg-white text-orange-500"
-                        } font-semibold rounded-lg shadow-xl py-1 px-2`}
+                        ${selectedTag === null
+              ? "bg-orange-500 text-white"
+              : "bg-white text-orange-500"
+            } rounded-lg shadow-xl py-1 px-2`}
         >
           View All
         </button>
@@ -33,7 +32,7 @@ export default function Tags({ onTagSelect, tags }: TagsProps) {
           <button
             key={index}
             onClick={() => handleTagClick(tag.title)}
-            className={`${selectedTag === tag.title ? "bg-orange-500 text-white" : "bg-white text-orange-600"} font-semibold rounded-lg shadow-xl py-1 px-2`}
+            className={`${selectedTag === tag.title ? "bg-orange-500 text-white" : "bg-white text-orange-600"} italic text-sm rounded-lg shadow-xl py-1 px-2`}
           >
             #{tag.title}
           </button>
@@ -42,7 +41,7 @@ export default function Tags({ onTagSelect, tags }: TagsProps) {
       <div className="md:hidden mb-4">
         <button
           onClick={handleDropdownToggle}
-          className="bg-white text-orange-500 py-2 px-4 rounded-lg w-full text-left"
+          className="bg-white text-orange-500 py-2 px-4 rounded-lg w-full text-left "
         >
           {selectedTag ? selectedTag : "Select Tag"}
         </button>
@@ -60,11 +59,10 @@ export default function Tags({ onTagSelect, tags }: TagsProps) {
                 key={index}
                 onClick={() => handleTagClick(tag.title)}
                 className={`block w-full text-left px-4 py-2
-                                    ${
-                                      selectedTag === tag.title
-                                        ? "bg-orange-500 text-white"
-                                        : "text-orange-500"
-                                    }`}
+                                    ${selectedTag === tag.title
+                    ? "bg-orange-500 text-white"
+                    : "text-orange-500"
+                  }`}
               >
                 #{tag.title}
               </button>

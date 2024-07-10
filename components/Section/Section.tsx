@@ -4,8 +4,8 @@ import Slider from "react-slick";
 // Local imports
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { SectionProps } from "@/app/lib/interface";
 import MaterialCards from "../MaterialCards/MaterialCards";
+import { SectionProps } from "@/app/lib/interface";
 
 export default function Section({ materials }: SectionProps) {
   const settings = {
