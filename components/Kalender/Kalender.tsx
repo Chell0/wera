@@ -59,7 +59,7 @@ export default function Kalender() {
   return (
     <>
       <div className="p-4">
-        <div className="bg-white p-5 m-1 rounded-xl shadow-lg items-center justify-center mt-10">
+        <div className="bg-white p-3 m-1 rounded-xl shadow-lg items-center justify-center mt-10">
           <h1 className="text-orange-500 text-3xl font-bold p-3">
             Veranstaltungskalender
           </h1>
