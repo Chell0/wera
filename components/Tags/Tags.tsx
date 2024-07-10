@@ -32,7 +32,7 @@ export default function Tags({ onTagSelect, tags }: TagsProps) {
           <button
             key={index}
             onClick={() => handleTagClick(tag.title)}
-            className={`${selectedTag === tag.title ? "bg-orange-500 text-white" : "bg-white text-orange-600"} italic text-sm rounded-lg shadow-xl py-1 px-2`}
+            className={`${selectedTag === tag.title ? "bg-orange-500 text-white" : "bg-white text-orange-600"} capitalize italic text-sm rounded-lg shadow-xl py-1 px-2`}
           >
             #{tag.title}
           </button>
@@ -58,7 +58,7 @@ export default function Tags({ onTagSelect, tags }: TagsProps) {
               <button
                 key={index}
                 onClick={() => handleTagClick(tag.title)}
-                className={`block w-full text-left px-4 py-2
+                className={`block w-full text-left capitalize px-4 py-2
                                     ${selectedTag === tag.title
                     ? "bg-orange-500 text-white"
                     : "text-orange-500"

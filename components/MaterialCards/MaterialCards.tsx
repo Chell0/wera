@@ -34,14 +34,6 @@ export default function MaterialCards({ card }: { card: MaterialCard }) {
             </Link>
           </h3>
           <p className="text-gray-600 text-left text-xs mb-3 line-clamp-2">{smallDescription}</p>
-          {/* <Link
-            href={links}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`bg-orange-500 hover:bg-orange-400 hover:text-white text-white text-sm cursor-pointer no-underline py-1 px-2 rounded-lg`}
-          >
-            Mehr
-          </Link> */}
         </div>
       </div >
     </>
