@@ -14,7 +14,6 @@ export default function MaterialCards({ card }: { card: MaterialCard }) {
           <Image
             src={urlFor(titleImage).url()}
             alt={title}
-            // fill={true}
             height={150}
             width={150}
             style={{ maxHeight: `360px` }}
@@ -29,7 +28,7 @@ export default function MaterialCards({ card }: { card: MaterialCard }) {
               href={links}
               target="_blank"
               rel="noopener noreferrer"
-              className={`cursor-pointer no-underline`}
+              className={`cursor-pointer no-underline hover:underline`}
             >
               {title}
             </Link>
