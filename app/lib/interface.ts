@@ -4,6 +4,7 @@ export interface Venue {
 	ansprechperson: string;
 	kontakt: string;
 	angebote: string;
+	kategorien: string[];
 	website: string;
 }
 
