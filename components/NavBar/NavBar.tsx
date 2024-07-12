@@ -21,6 +21,7 @@ export default function NavBar() {
                     <Link href="/material" className=" hover:text-gray-500">Material</Link>
                     <Link href="/datenbank" className=" hover:text-gray-500">Datenbank</Link>
                     <Link href="/kalender" className=" hover:text-gray-500">Kalender</Link>
+                    <Link href="/resource" className=" hover:text-gray-500">Resource</Link>
                 </div>
                 <div className="hidden md:block">
                     <Link href={`https://www.ossara.de`} target="_blank" rel="noopener noreferrer">

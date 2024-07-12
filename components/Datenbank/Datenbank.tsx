@@ -10,7 +10,7 @@ export default function Datenbank() {
 
   useEffect(() => {
     const fetchVenues = async () => {
-      const query = `*[_type == "datenbank"] { name, ansprechperson, kontakt, angebote, website }`;
+      const query = `*[_type == "datenbank"] { name, kontakt, angebote, website }`;
       const result = await client.fetch(query);
       setVenues(result);
       setLoading(false);
@@ -65,12 +65,6 @@ export default function Datenbank() {
                   scope="col"
                   className="bg-orange-500 px-6 py-3 text-left text-sm font-bold text-white uppercase tracking-wider border-l border-gray-300"
                 >
-                  Ansprechperson
-                </th>
-                <th
-                  scope="col"
-                  className="bg-orange-500 px-6 py-3 text-left text-sm font-bold text-white uppercase tracking-wider border-l border-gray-300"
-                >
                   Kontakt
                 </th>
                 <th
@@ -102,9 +96,6 @@ export default function Datenbank() {
                   <tr key={index}>
                     <td className="px-6 py-4 text-wrap md:text-balance text-xs font-medium text-gray-900">
                       {venue.name}
-                    </td>
-                    <td className="px-6 py-4 text-wrap md:text-balance text-xs text-gray-600 border-l border-gray-300">
-                      {venue.ansprechperson}
                     </td>
                     <td className="px-6 py-4 text-wrap md:text-balance text-xs text-gray-600 border-l border-gray-300">
                       {venue.kontakt}

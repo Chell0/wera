@@ -59,6 +59,21 @@ export interface ThemenPost {
 	}[];
 }
 
+// Resource
+export interface Resource {
+	_id: string;
+	name: string;
+	kontakt: string;
+	website: string;
+	kategorien: string[];
+	angebote: string;
+}
+
+// Library Resource
+export interface ResourceLibraryProps {
+	resources: Resource[];
+}
+
 // Tags
 export interface allTags {
 	title: string;
