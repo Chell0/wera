@@ -56,7 +56,7 @@ export interface ThemenPost {
 	tags: string[];
 	authors: {
 		name: string;
-		profileImage: string;
+		specialty: string;
 	}[];
 }
 

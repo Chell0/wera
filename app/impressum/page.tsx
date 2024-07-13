@@ -5,7 +5,7 @@ export default function Page() {
     return (
         <>
             <div className="relative bg-cover bg-no-repeat bg-local"
-                style={{ backgroundImage: `url("/homepage-bg.jpeg")` }}>
+                style={{ backgroundImage: `url("/homepage-bg.png")` }}>
                 <main className={`p-6`}>
                     <NavBar />
                     <div className="bg-white rounded-xl shadow-xl p-10 mt-20 ml-5 mr-5">
