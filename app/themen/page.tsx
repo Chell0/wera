@@ -19,7 +19,7 @@ async function fetchTagsData() {
 // Fetch Blog Data
 async function fetchBlogsData() {
   const query = `
-    *[_type == 'blog'] | order(_createdAt desc) {
+    *[_type == 'blog'] | order(date desc) {
         title,
         "currentSlug": slug.current,
         titleImage,
