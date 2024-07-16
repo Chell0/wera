@@ -77,15 +77,17 @@ export default function Datenbank() {
           </p>
         </div>
 
+        {/* Search Box */}
         <div className="flex justify-center mt-10">
-          <select className="p-2 border border-orange-300 rounded-lg" value={selectedCategory} onChange={handleCategoryChange}>
+          <select className="bg-white font-semibold p-2 border border-orange-300 rounded-lg" value={selectedCategory} onChange={handleCategoryChange}>
             <option value="">Alle Kategorien</option>
             {categories.map((category, index) => (
-              <option key={index} value={category}>#{category}</option>
+              <option className="text-orange-500 bg-white" key={index} value={category}>#{category}</option>
             ))}
           </select>
         </div>
 
+        {/* Table Head Section */}
         <div className="overflow-x-auto shadow-xl rounded-xl mt-20">
           <table className="min-w-full divide-y divide-gray-600 bg-white">
             <thead className="bg-gray-200">
@@ -107,12 +109,6 @@ export default function Datenbank() {
                   className="bg-orange-500 p-3 text-left text-sm font-bold text-white uppercase tracking-wider border-l border-gray-300"
                 >
                   Angebote
-                </th>
-                <th
-                  scope="col"
-                  className="bg-orange-500 p-3 text-left text-sm font-bold text-white uppercase tracking-wider border-l border-gray-300"
-                >
-                  Kategorien
                 </th>
                 <th
                   scope="col"
@@ -143,11 +139,6 @@ export default function Datenbank() {
                     </td>
                     <td className="p-2 text-wrap md:text-balance text-xs text-gray-600 border-l border-gray-300">
                       {venue.angebote}
-                    </td>
-                    <td className="p-2 text-wrap md:text-balance text-xs text-gray-600 border-l border-gray-300">
-                      {venue.kategorien.map((category, index) => (
-                        <span key={index} className="block">#{category}</span>
-                      ))}
                     </td>
                     <td className="p-2 text-wrap md:text-balance text-xs text-gray-600 border-l border-gray-300">
                       <Link

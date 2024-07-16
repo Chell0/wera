@@ -15,7 +15,7 @@ import ShowMoreButton from "@/components/ShowMoreButton/ShowMoreButton";
 // Fetch Blog Data
 async function fetchBlogsData() {
   const query = `
-    *[_type == 'blog'] | order(_createdAt desc)[0...6] {
+    *[_type == 'blog'] | order(date desc)[0...6] {
         title,
         "currentSlug": slug.current,
         titleImage,
