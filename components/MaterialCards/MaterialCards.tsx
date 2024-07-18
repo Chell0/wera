@@ -9,14 +9,14 @@ export default function MaterialCards({ card }: { card: MaterialCard }) {
 
   return (
     <>
-      <div className="bg-amber-50 h-[450px] max-w-screen-lg rounded-lg shadow-md overflow-hidden">
-        <div className="bg-white flex justify-center items-center h-52">
+      <div className="bg-amber-50 h-[380px] max-w-screen-lg rounded-lg shadow-md overflow-hidden">
+        <div className="bg-white flex justify-center items-center h-40">
           <Image
             src={urlFor(titleImage).url()}
             alt={title}
             height={150}
             width={150}
-            style={{ maxHeight: `360px` }}
+            style={{ maxHeight: `240px` }}
             quality={100}
             className={`rounded-lg object-cover overflow-hidden`}
           />
