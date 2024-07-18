@@ -6,24 +6,47 @@ import { client, urlFor } from "@/app/lib/sanityClient";
 import { ThemenPost } from "@/app/lib/interface";
 import Footer from "@/components/Footer/Footer";
 import NavBar from "@/components/NavBar/NavBar";
+import Link from "next/link";
 
 
 export const revalidate = 30; // revalidate at most 30seconds
 
 async function getData(slug: string) {
+  // const query = `
+  //   *[_type == "blog" && slug.current == '${slug}']{
+  //       "currentSlug": slug.current,
+  //         date,
+  //         title,
+  //         titleImage,
+  //         content,
+  //         "tags": tags[]->title,
+  //         authors[]->{
+  //           name,
+  //           specialty
+  //       }
+  //   }[0]`;
+
   const query = `
-    *[_type == "blog" && slug.current == '${slug}']{
-        "currentSlug": slug.current,
-          date,
-          title,
-          titleImage,
-          content,
-          "tags": tags[]->title,
-          authors[]->{
-            name,
-            specialty
-        }
-    }[0]`;
+  *[_type == "blog" && slug.current == '${slug}']{
+  "currentSlug": slug.current,
+    date,
+    title,
+    titleImage{
+      asset->{
+        _id,
+        url
+      },
+      alt,
+      description,
+      source
+    },
+    content,
+    "tags": tags[]->title,
+    authors[]->{
+      name,
+      specialty
+    }
+  }[0]`;
 
   const data = await client.fetch(query);
   return data;
@@ -79,10 +102,12 @@ export default async function ThemenArticle({
             </div>
 
             {/* Blog Image */}
-            <div className="flex items-center justify-center mt-10 mb-10 max-w-screen-xl">
+            <div className="flex items-center justify-center mt-10 mb-5 max-w-screen-xl">
               <Image
-                src={urlFor(data.titleImage).url()}
-                alt={data.title}
+                // src={urlFor(data.titleImage).url()}
+                src={data.titleImage.asset.url}
+                // alt={data.title}
+                alt={data.titleImage.alt}
                 width={1080}
                 height={872}
                 priority
@@ -91,6 +116,25 @@ export default async function ThemenArticle({
                 style={{ maxHeight: `480px` }}
               />
             </div>
+
+            {/* Blog Image Description */}
+            {data.titleImage.description && (
+              <div className={`text-center text-xs italic text-gray-500 mb-5`}>
+                <p>{data.titleImage.description}</p>
+              </div>
+            )}
+
+            {/* Blog Image Source */}
+            {data.titleImage.source && (
+              <div className={`text-center text-gray-500 text-xs mb-5`}>
+                <p>
+                  Source:{" "}
+                  <Link className={`text-orange-500`} href={data.titleImage.source} rel={`noopener noreferrer`} target={`_blank`}>
+                    {data.titleImage.source}
+                  </Link>
+                </p>
+              </div>
+            )}
 
             {/* Blog Content */}
             <div className="max-w-screen-lg mx-auto mt-20 prose prose-sm prose-stone prose-headings:text-2xl prose-headings:text-orange-500 prose-headings:font-semibold prose-a:text-orange-500 prose-a:target:_blank prose-a:rel:noreferrer">

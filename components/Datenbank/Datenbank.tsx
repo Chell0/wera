@@ -79,10 +79,12 @@ export default function Datenbank() {
 
         {/* Search Box */}
         <div className="flex justify-center mt-10">
-          <select className="bg-white font-semibold p-2 border border-orange-300 rounded-lg" value={selectedCategory} onChange={handleCategoryChange}>
+          <select className="bg-white p-2 border border-orange-300 text-xs rounded-lg" value={selectedCategory} onChange={handleCategoryChange}>
             <option value="">Alle Kategorien</option>
             {categories.map((category, index) => (
-              <option className="text-orange-500 bg-white" key={index} value={category}>#{category}</option>
+              <>
+                <option className="text-orange-500 text-xs py-5 bg-white" key={index} value={category}># {category}</option>
+              </>
             ))}
           </select>
         </div>
@@ -94,25 +96,25 @@ export default function Datenbank() {
               <tr>
                 <th
                   scope="col"
-                  className="bg-orange-500 p-3 text-left text-sm font-bold text-white uppercase tracking-wider"
+                  className="bg-orange-500 p-3 text-center text-sm font-bold text-white uppercase tracking-wider"
                 >
                   Name
                 </th>
                 <th
                   scope="col"
-                  className="bg-orange-500 p-3 text-left text-sm font-bold text-white uppercase tracking-wider border-l border-gray-300"
+                  className="bg-orange-500 p-3 text-center text-sm font-bold text-white uppercase tracking-wider border-l border-gray-300"
                 >
                   Kontakt
                 </th>
                 <th
                   scope="col"
-                  className="bg-orange-500 p-3 text-left text-sm font-bold text-white uppercase tracking-wider border-l border-gray-300"
+                  className="bg-orange-500 p-3 text-center text-sm font-bold text-white uppercase tracking-wider border-l border-gray-300"
                 >
                   Angebote
                 </th>
                 <th
                   scope="col"
-                  className="bg-orange-500 p-3 text-left text-sm font-bold text-white uppercase tracking-wider border-l border-gray-300"
+                  className="bg-orange-500 p-3 text-center text-sm font-bold text-white uppercase tracking-wider border-l border-gray-300"
                 >
                   Website
                 </th>
@@ -131,16 +133,16 @@ export default function Datenbank() {
               ) : (
                 filteredVenues.map((venue, index) => (
                   <tr key={index}>
-                    <td className="p-2 text-wrap md:text-balance text-xs font-medium text-gray-900">
+                    <td className="px-5 py-4 text-wrap md:text-balance text-xs font-medium text-gray-900">
                       {venue.name}
                     </td>
-                    <td className="p-2 text-wrap md:text-balance text-xs text-gray-600 border-l border-gray-300">
+                    <td className="px-5 py-4 text-wrap md:text-balance text-xs text-gray-600 border-l border-gray-300">
                       {venue.kontakt}
                     </td>
-                    <td className="p-2 text-wrap md:text-balance text-xs text-gray-600 border-l border-gray-300">
+                    <td className="px-5 py-4 text-wrap md:text-balance text-xs text-gray-600 border-l border-gray-300">
                       {venue.angebote}
                     </td>
-                    <td className="p-2 text-wrap md:text-balance text-xs text-gray-600 border-l border-gray-300">
+                    <td className="px-5 py-4 text-wrap md:text-balance text-xs text-gray-600 border-l border-gray-300">
                       <Link
                         href={venue.website}
                         target="_blank"

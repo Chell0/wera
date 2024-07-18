@@ -9,8 +9,8 @@ export default function MaterialCards({ card }: { card: MaterialCard }) {
 
   return (
     <>
-      <div className="bg-amber-50 h-[400px] max-w-screen-lg rounded-lg shadow-md overflow-hidden">
-        <div className="bg-white flex justify-center items-center h-56">
+      <div className="bg-amber-50 h-[450px] max-w-screen-lg rounded-lg shadow-md overflow-hidden">
+        <div className="bg-white flex justify-center items-center h-52">
           <Image
             src={urlFor(titleImage).url()}
             alt={title}
@@ -21,9 +21,8 @@ export default function MaterialCards({ card }: { card: MaterialCard }) {
             className={`rounded-lg object-cover overflow-hidden`}
           />
         </div>
-        {/* <div className="bg-amber-50 p-5"> */}
-        <div className="bg-amber-50 flex flex-col justify-center items-center p-3">
-          <h3 className="text-orange-500 text-md text-left font-semibold mb-3">
+        <div className="bg-amber-50 flex flex-col justify-center items-center m-5">
+          <h3 className="text-orange-500 text-sm font-semibold mb-2">
             <Link
               href={links}
               target="_blank"
@@ -33,7 +32,7 @@ export default function MaterialCards({ card }: { card: MaterialCard }) {
               {title}
             </Link>
           </h3>
-          <p className="text-gray-600 text-left text-xs mb-3 line-clamp-2">{smallDescription}</p>
+          <p className="text-gray-600 text-left text-xs mb-3">{smallDescription}</p>
         </div>
       </div >
     </>
