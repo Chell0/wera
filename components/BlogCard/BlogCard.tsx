@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+
 import { ThemenCard } from "@/app/lib/interface";
 import { urlFor } from "@/app/lib/sanityClient";
 
