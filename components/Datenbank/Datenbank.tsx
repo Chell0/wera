@@ -83,7 +83,7 @@ export default function Datenbank() {
             <option value="">Alle Kategorien</option>
             {categories.map((category, index) => (
               <>
-                <option className="text-orange-500 text-xs py-5 bg-white" key={index} value={category}># {category}</option>
+                <option className="text-orange-500 text-xs py-5 bg-white" key={index} value={category}>{category}</option>
               </>
             ))}
           </select>
